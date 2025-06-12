@@ -4,8 +4,8 @@ import Container from '../Layout/Container'
 
 const Home = () => {
   return (
-    <div>
-      <Navbar/>
+    <div className=''>
+      <Navbar />
       <Container>
         
       </Container>

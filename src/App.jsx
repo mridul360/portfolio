@@ -8,9 +8,9 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-    <Home/>
-    </>
+    <div className='bg-[#494949]'>
+    <Home />
+    </div>
   )
 }
 

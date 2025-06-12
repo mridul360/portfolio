@@ -6,7 +6,7 @@ import Container from '../Layout/Container';
 
 const Navbar = () => {
   return (
-    <div className='bg-[#494949]'>
+    <div >
         <Container>
             <div className='flex justify-between bg-black items-center px-[70px] rounded-b-xl'>
       <div>
