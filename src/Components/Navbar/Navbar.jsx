@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <div >
         <Container>
-            <div className='flex justify-between bg-black items-center px-[70px] rounded-b-xl'>
+            <div className='flex justify-between bg-black items-center px-[20px] rounded-b-xl'>
       <div>
         <img className='h-[80px]'  src={logo} alt="" />
       </div>

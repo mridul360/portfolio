@@ -7,10 +7,13 @@ import bg2 from '../../assets/background.jpg'
 const Home = () => {
   return (
     <div className='h-[100vh]  bg-no-repeat bg-cover bg-center 'style={{ backgroundImage: `url(${bg2})` }}>
-      <Navbar />
+       <Navbar />
       <Container>
-        <div className='p-100'
+        
+        <div className='p-105' 
           >
+           
+            
           <div>
             <div>
 
