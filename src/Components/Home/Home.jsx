@@ -7,7 +7,9 @@ const Home = () => {
     <div className=''>
       <Navbar />
       <Container>
-        
+        <div className=' p-100'>
+
+        </div>
       </Container>
     </div>
   )
