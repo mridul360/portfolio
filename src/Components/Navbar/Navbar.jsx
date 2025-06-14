@@ -15,14 +15,9 @@ const Navbar = () => {
       <div>
         <ul className='flex gap-[50px] text-white'>
             <li><a href="">Recent Work</a></li>
-            <li><a href="">About Me</a></li>
-            <li><a href="">Hire Me</a></li>
             <li><a href="">Reviews</a></li>
+            <li><a href="">Hire Me</a></li>
         </ul>
-      </div>
-      <div className='text-white flex gap-[20px]'>
-        <FaLinkedin className='text-2xl ' />
-        <FaUpwork  className='text-2xl ' />
       </div>
     </div>
         </Container>
