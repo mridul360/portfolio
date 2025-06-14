@@ -3,7 +3,7 @@ import Container from '../Layout/Container'
 
 const Works = () => {
   return (
-    <div className='p-100 bg-textHead'>
+    <div id='works' className='h-[100vh] bg-[#14213d]'>
       <Container>
         <div >
         </div>

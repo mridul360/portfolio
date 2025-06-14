@@ -18,14 +18,14 @@ const Navbar = () => {
             border: '1px solid rgba(23, 23, 23, 0.3)',
           }}>
           <div>
-            <img className='h-[80px]' src={logo} alt="" />
+            <a href="#home"><img  className='h-[80px]' src={logo} alt="" /></a>
           </div>
           <div>
 
             <ul className='flex gap-[50px] text-white font-bold items-center'>
-              <li> <a href="#" className="relative group text-gray-700 hover:text-black">About Me
+              <li> <a href="#about" className="relative group text-gray-700 hover:text-black">About Me
       <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white w-0 group-hover:w-full group-hover:left-0 transition-all duration-300"></span></a></li>
-              <li> <a href="" className="relative group text-gray-700 hover:text-black">Recent Works
+              <li> <a href="#works" className="relative group text-gray-700 hover:text-black">Recent Works
       <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white  w-0 group-hover:w-full group-hover:left-0 transition-all duration-300"></span></a></li>
               <li> <a href="#" className="relative group text-gray-700 hover:text-black">Reviews
       <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white  w-0 group-hover:w-full group-hover:left-0 transition-all duration-300"></span></a></li>

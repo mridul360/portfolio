@@ -8,7 +8,7 @@ import me from '../../assets/me3.jpg'
 
 const Home = () => {
   return (
-    <div className='h-[100vh]  bg-no-repeat bg-cover bg-center  ' style={{ backgroundImage: `url(${bg2})` }}>
+    <div id='home' className='h-[100vh]  bg-no-repeat bg-cover bg-center  ' style={{ backgroundImage: `url(${bg2})` }}>
       <Container>
 
         <div className='p-105 relative'>
