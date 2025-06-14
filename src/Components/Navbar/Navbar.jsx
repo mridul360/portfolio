@@ -9,7 +9,7 @@ const Navbar = () => {
     <div className='fixed w-full z-9999'
     >
       <Container>
-        <div className='flex justify-between  items-center px-[20px] rounded-b-xl'
+        <div className='flex justify-between  items-center px-[30px] rounded-b-xl'
           style={{
             background: 'rgba(23, 23, 23, 0.4)',
             boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
@@ -22,14 +22,16 @@ const Navbar = () => {
           </div>
           <div>
 
-            <ul className='flex gap-[50px] text-white font-bold'>
+            <ul className='flex gap-[50px] text-white font-bold items-center'>
               <li> <a href="#" className="relative group text-gray-700 hover:text-black">About Me
       <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white w-0 group-hover:w-full group-hover:left-0 transition-all duration-300"></span></a></li>
+              <li> <a href="" className="relative group text-gray-700 hover:text-black">Recent Works
+      <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white  w-0 group-hover:w-full group-hover:left-0 transition-all duration-300"></span></a></li>
               <li> <a href="#" className="relative group text-gray-700 hover:text-black">Reviews
       <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white  w-0 group-hover:w-full group-hover:left-0 transition-all duration-300"></span></a></li>
-              <li> <a href="#" className="relative group text-gray-700 hover:text-black">Hire Me
+      <li> <a href="#" className="relative group text-gray-700 hover:text-black">Hire Me
       <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white  w-0 group-hover:w-full group-hover:left-0 transition-all duration-300"></span></a></li>
-              <li><a className='px-6 py-4 bg-[#346ea0] rounded-xl text-black' href="">Contact Me</a></li>
+              
             </ul>
           </div>
         </div>
