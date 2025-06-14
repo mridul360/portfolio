@@ -6,7 +6,7 @@ import Container from '../Layout/Container';
 
 const Navbar = () => {
   return (
-    <div className='navbar'
+    <div className='fixed w-full'
     >
       <Container>
         <div className='flex justify-between bg-[#] items-center px-[20px] rounded-b-xl'
@@ -26,7 +26,7 @@ const Navbar = () => {
               <li><a href="">Recent Work</a></li>
               <li><a href="">Reviews</a></li>
               <li><a href="">Hire Me</a></li>
-              <li><a className='px-6 py-4 bg-[#346ea0] rounded-xl text-[]' href="">Contact Me</a></li>
+              <li><a className='px-6 py-4 bg-[#346ea0] rounded-xl text-black' href="">Contact Me</a></li>
             </ul>
           </div>
         </div>
