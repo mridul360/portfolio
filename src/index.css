@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+
+@theme {
+  --color-textHead: #504faf;
+}

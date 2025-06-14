@@ -10,8 +10,7 @@ const Home = () => {
        <Navbar />
       <Container>
         
-        <div className='p-105' 
-          >
+        <div className='p-105'>
            
             
           <div>
