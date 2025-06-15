@@ -22,15 +22,15 @@ const Navbar = () => {
           </div>
           <div>
 
-            <ul className='flex gap-[50px] text-white font-bold items-center'>
-              <li> <a href="#about" className="relative group text-gray-700 hover:text-black">About Me
-      <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white w-0 group-hover:w-full group-hover:left-0 transition-all duration-300"></span></a></li>
-              <li> <a href="#works" className="relative group text-gray-700 hover:text-black">Recent Works
-      <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white  w-0 group-hover:w-full group-hover:left-0 transition-all duration-300"></span></a></li>
-              <li> <a href="#" className="relative group text-gray-700 hover:text-black">Reviews
-      <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white  w-0 group-hover:w-full group-hover:left-0 transition-all duration-300"></span></a></li>
-      <li> <a href="#" className="relative group text-gray-700 hover:text-black">Hire Me
-      <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white  w-0 group-hover:w-full group-hover:left-0 transition-all duration-300"></span></a></li>
+            <ul className='flex gap-[50px]  font-bold items-center'>
+              <li> <a href="#about" className="relative group text-white hover:text-black">About Me
+      <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white w-0 group-hover:w-full group-hover:left-0 transition-all duration-400"></span></a></li>
+              <li> <a href="#works" className="relative group text-white hover:text-black">Recent Works
+      <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white  w-0 group-hover:w-full group-hover:left-0 transition-all duration-400"></span></a></li>
+              <li> <a href="#" className="relative group text-white hover:text-black">Reviews
+      <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white  w-0 group-hover:w-full group-hover:left-0 transition-all duration-400"></span></a></li>
+      <li> <a href="#" className="relative group text-white hover:text-black">Hire Me
+      <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white  w-0 group-hover:w-full group-hover:left-0 transition-all duration-400"></span></a></li>
               
             </ul>
           </div>
