@@ -27,9 +27,9 @@ const Navbar = () => {
       <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white w-0 group-hover:w-full group-hover:left-0 transition-all duration-400"></span></a></li>
               <li> <a href="#works" className="relative group text-white hover:text-black">Recent Works
       <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white  w-0 group-hover:w-full group-hover:left-0 transition-all duration-400"></span></a></li>
-              <li> <a href="#" className="relative group text-white hover:text-black">Reviews
+              <li> <a href="#reviews" className="relative group text-white hover:text-black">Reviews
       <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white  w-0 group-hover:w-full group-hover:left-0 transition-all duration-400"></span></a></li>
-      <li> <a href="#" className="relative group text-white hover:text-black">Hire Me
+      <li> <a href="#hire" className="relative group text-white hover:text-black">Hire Me
       <span className="absolute left-1/2 -bottom-1 h-0.5 bg-white  w-0 group-hover:w-full group-hover:left-0 transition-all duration-400"></span></a></li>
               
             </ul>

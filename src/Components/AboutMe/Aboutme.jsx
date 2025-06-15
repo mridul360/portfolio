@@ -13,11 +13,11 @@ const Aboutme = () => {
       <div className='absolute inset-0 bg-black/90 backdrop-blur-[1px]'>
         <Container>
         <div className='flex items-center relative '>
-            <div className='mt-80 w-[50%] text-white'>
+            <div className='mt-80 ml-40 w-[50%] text-white'>
                 <h2 className='text-[44px] leading-[54px] mb-6 '>About Me</h2>
                 <p>i am a passionate Frontend Developer with Entry Level of experience building responsive, user-friendly web applications. Skilled in HTML5, CSS3, JavaScript and React.js with a strong focus on performance, accessibility, and modern UI/UX principles. Proven ability to collaborate with cross-functional teams to deliver high-quality digital experiences. Dedicated to writing clean, maintainable code and staying updated with the latest frontend technologies.</p>
             </div>
-            <div className=' absolute top-[250px] left-[900px]'>
+            <div className=' absolute top-[250px] left-[980px]'>
                 <img className='h-[300px] w-[300px]  rounded-[50%]' src={me2} alt="" />
             </div>
         </div>

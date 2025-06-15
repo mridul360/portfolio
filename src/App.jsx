@@ -6,6 +6,8 @@ import Home from './Components/Home/Home'
 import Navbar from './Components/Navbar/Navbar'
 import Works from './Components/Works/Works'
 import Aboutme from './Components/AboutMe/Aboutme'
+import Reviews from './Components/Reviews/Reviews'
+import HireMe from './Components/HireMe/HireMe'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,6 +18,8 @@ function App() {
     <Home />
     <Aboutme/>
     <Works/>
+    <Reviews/>
+    <HireMe/>
     </>
   )
 }
