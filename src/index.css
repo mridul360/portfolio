@@ -4,3 +4,14 @@
 @theme {
   --color-textHead: #504faf;
 }
+
+.active {
+  color: black !important;
+  font-weight: bold;
+}
+
+.active span {
+  width: 100% !important;
+  left: 0 !important;
+  background: white !important;
+}
