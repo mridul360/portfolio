@@ -30,7 +30,7 @@ const Navbar = () => {
                   spy={true}
                   smooth={true}
                   duration={500}
-                  className="relative group text-white hover:text-black cursor-pointer"
+                  className="relative group text-white hover:text-blue-800 cursor-pointer"
                   activeClass="active"
                 >
                   About Me
@@ -43,7 +43,7 @@ const Navbar = () => {
                   spy={true}
                   smooth={true}
                   duration={500}
-                  className="relative group text-white hover:text-black cursor-pointer"
+                  className="relative group text-white hover:text-blue-800  cursor-pointer"
                   activeClass="active"
                 >
                   Recent Works
@@ -56,7 +56,7 @@ const Navbar = () => {
                   spy={true}
                   smooth={true}
                   duration={800}
-                  className="relative group text-white hover:text-black cursor-pointer"
+                  className="relative group text-white hover:text-blue-800  cursor-pointer"
                   activeClass="active"
                 >
                   Reviews
@@ -69,7 +69,7 @@ const Navbar = () => {
                   spy={true}
                   smooth={true}
                   duration={500}
-                  className="relative group text-white hover:text-black cursor-pointer"
+                  className="relative group text-white hover:text-blue-800  cursor-pointer"
                   activeClass="active"
                 >
                   Hire Me
