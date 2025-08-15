@@ -55,7 +55,7 @@ const Navbar = () => {
                   to="reviews"
                   spy={true}
                   smooth={true}
-                  duration={500}
+                  duration={800}
                   className="relative group text-white hover:text-black cursor-pointer"
                   activeClass="active"
                 >
