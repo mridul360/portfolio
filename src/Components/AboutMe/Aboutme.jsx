@@ -25,24 +25,16 @@ const Aboutme = () => {
       
             <div className='bg-black rounded-br-2xl rounded-tr-2xl px-5 py-5 font-bold text-4xl text-white py6 absolute top-[300px] left-0 '>
                 <div className='mb-5'>
-                    <a href=""><FaGithub /></a>
-                </div>
-                <div className='mb-5'><a  href=""><FaLinkedin /></a></div>
-                <div className='mb-5'><a  href=""><FaXTwitter /></a></div>
-                <div className=''><a  href=""><FaDiscord/></a></div>
-            </div>
-            <div className='absolute top-[700px] left-[30%] flex gap-[40px] items-center'>
-                <h2 className='text-[44px] leading-[54px] text-white'>Worked With <span>:</span></h2>
-                <div className='bg-black rounded-2xl px-5 py-5 font-bold text-4xl text-white py6  flex'>
-                <div className='mr-5'>
                     <a href=""><FaHtml5 /></a>
                 </div>
-                <div className='mr-5'><a  href=""><FaCss3Alt /></a></div>
-                <div className='mr-5'><a  href=""><FaJsSquare /></a></div>
-                <div className='mr-5'><a  href=""><FaBootstrap /></a></div>
-                <div className='mr-5'><a  href=""><SiTailwindcss /></a></div>
+                <div className='mb-5'><a  href=""><FaCss3Alt /></a></div>
+                <div className='mb-5'><a  href=""><FaJsSquare /></a></div>
+                <div className='mb-5'><a  href=""><FaBootstrap /></a></div>
+                <div className='mb-5'><a  href=""><SiTailwindcss /></a></div>
                 <div className=''><a  href=""><FaReact /></a></div>
             </div>
+            <div className='absolute top-[700px] left-[30%] flex gap-[40px] items-center'>
+                
             </div>
       </div>
     </div>

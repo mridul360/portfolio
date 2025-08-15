@@ -31,9 +31,13 @@ const Works = () => {
             <div className='text-center mt-3'>
               <p className='text-white'>Made with Html, Css and Js</p>
               <a href="#">
-                <button className='w-full bg-amber-100 rounded-3xl py-2 mt-3 cursor-pointer hover:bg-amber-200 transition-colors duration-300'>
+                <div className='flex justify-between'>
+                    <button className=' bg-black text-white rounded-bl-3xl rounded-tr-3xl px-15 py-2 mt-3 cursor-pointer  hover:bg-white hover:text-black transition-colors duration-300'>
+                  Live
+                </button><button className=' bg-black text-white rounded-br-3xl rounded-tl-3xl px-15 py-2 mt-3 cursor-pointer hover:bg-white hover:text-black transition-colors duration-300'>
                   Code
                 </button>
+                </div>
               </a>
             </div>
           </div>
@@ -61,13 +65,16 @@ const Works = () => {
             <div className='text-center mt-3'>
               <p className='text-white'>Made with Html, Css and Js</p>
               <a href="#">
-                <button className='w-full bg-amber-100 rounded-3xl py-2 mt-3 cursor-pointer hover:bg-amber-200 transition-colors duration-300'>
+                <div className='flex justify-between'>
+                    <button className=' bg-black text-white rounded-bl-3xl rounded-tr-3xl px-15 py-2 mt-3 cursor-pointer  hover:bg-white hover:text-black transition-colors duration-300'>
+                  Live
+                </button><button className=' bg-black text-white rounded-br-3xl rounded-tl-3xl px-15 py-2 mt-3 cursor-pointer hover:bg-white hover:text-black transition-colors duration-300'>
                   Code
                 </button>
+                </div>
               </a>
             </div>
-          </div>
-          <div 
+          </div><div 
             className='px-5 py-5 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/50 hover:scale-105'
             style={{
               background: 'rgba(23, 23, 23, 0.4)',
@@ -91,13 +98,16 @@ const Works = () => {
             <div className='text-center mt-3'>
               <p className='text-white'>Made with Html, Css and Js</p>
               <a href="#">
-                <button className='w-full bg-amber-100 rounded-3xl py-2 mt-3 cursor-pointer hover:bg-amber-200 transition-colors duration-300'>
+                <div className='flex justify-between'>
+                    <button className=' bg-black text-white rounded-bl-3xl rounded-tr-3xl px-15 py-2 mt-3 cursor-pointer  hover:bg-white hover:text-black transition-colors duration-300'>
+                  Live
+                </button><button className=' bg-black text-white rounded-br-3xl rounded-tl-3xl px-15 py-2 mt-3 cursor-pointer hover:bg-white hover:text-black transition-colors duration-300'>
                   Code
                 </button>
+                </div>
               </a>
             </div>
-          </div>
-          <div 
+          </div><div 
             className='px-5 py-5 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/50 hover:scale-105'
             style={{
               background: 'rgba(23, 23, 23, 0.4)',
@@ -121,13 +131,16 @@ const Works = () => {
             <div className='text-center mt-3'>
               <p className='text-white'>Made with Html, Css and Js</p>
               <a href="#">
-                <button className='w-full bg-amber-100 rounded-3xl py-2 mt-3 cursor-pointer hover:bg-amber-200 transition-colors duration-300'>
+                <div className='flex justify-between'>
+                    <button className=' bg-black text-white rounded-bl-3xl rounded-tr-3xl px-15 py-2 mt-3 cursor-pointer  hover:bg-white hover:text-black transition-colors duration-300'>
+                  Live
+                </button><button className=' bg-black text-white rounded-br-3xl rounded-tl-3xl px-15 py-2 mt-3 cursor-pointer hover:bg-white hover:text-black transition-colors duration-300'>
                   Code
                 </button>
+                </div>
               </a>
             </div>
-          </div>
-          <div 
+          </div><div 
             className='px-5 py-5 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/50 hover:scale-105'
             style={{
               background: 'rgba(23, 23, 23, 0.4)',
@@ -151,9 +164,13 @@ const Works = () => {
             <div className='text-center mt-3'>
               <p className='text-white'>Made with Html, Css and Js</p>
               <a href="#">
-                <button className='w-full bg-amber-100 rounded-3xl py-2 mt-3 cursor-pointer hover:bg-amber-200 transition-colors duration-300'>
+                <div className='flex justify-between'>
+                    <button className=' bg-black text-white rounded-bl-3xl rounded-tr-3xl px-15 py-2 mt-3 cursor-pointer  hover:bg-white hover:text-black transition-colors duration-300'>
+                  Live
+                </button><button className=' bg-black text-white rounded-br-3xl rounded-tl-3xl px-15 py-2 mt-3 cursor-pointer hover:bg-white hover:text-black transition-colors duration-300'>
                   Code
                 </button>
+                </div>
               </a>
             </div>
           </div>
