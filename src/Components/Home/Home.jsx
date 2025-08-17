@@ -6,7 +6,6 @@ import me from '../../assets/me3.jpg';
 import bg2 from '../../assets/bg.png';
 
 const Home = () => {
-  // Animation variants
   const container = {
     hidden: { opacity: 0 },
     visible: {
@@ -42,7 +41,6 @@ const Home = () => {
     }
   };
 
-  // Scroll trigger hooks
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: false
@@ -53,7 +51,7 @@ const Home = () => {
     <section
       id="home"
       className="min-h-screen bg-cover bg-center relative overflow-hidden"
-      // Add this to your CSS
+
 
       style={{
         background: "linear-gradient(-45deg, #0f172a, #1e293b, #334155, #475569)",
@@ -62,7 +60,6 @@ const Home = () => {
       }}
       ref={ref}
     >
-      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/30"></div>
 
       <div className="container mx-auto px-4 h-full flex items-center relative z-10">
@@ -72,7 +69,7 @@ const Home = () => {
           animate={inView ? "visible" : "hidden"}
           variants={container}
         >
-          {/* Text content */}
+
           <motion.div
             className="text-white"
             variants={container}
@@ -93,7 +90,6 @@ const Home = () => {
               I create beautiful, functional websites and applications focused on user experience.
             </motion.p>
 
-            {/* Buttons */}
             <motion.div className="flex flex-wrap gap-4 mb-8" variants={item}>
               <motion.button
                 className="bg-yellow-400 text-black px-6 py-3 rounded-full font-bold flex items-center gap-2 hover:bg-yellow-300 transition"
@@ -112,11 +108,10 @@ const Home = () => {
               </motion.button>
             </motion.div>
 
-            {/* Social links */}
             <motion.div className="flex gap-4" variants={item}>
               {[
-                { icon: <FiGithub />, url: 'https://github.com' },
-                { icon: <FiLinkedin />, url: 'https://linkedin.com' },
+                { icon: <FiGithub />, url: 'https://github.com/mridul360' },
+                { icon: <FiLinkedin />, url: 'https://www.linkedin.com/in/mridul-hasan-mh1207' },
                 { icon: <FiTwitter />, url: 'https://twitter.com' }
               ].map((social, index) => (
                 <motion.a
@@ -134,7 +129,6 @@ const Home = () => {
             </motion.div>
           </motion.div>
 
-          {/* Image */}
           <motion.div
             className="flex justify-center"
             variants={image}
@@ -169,7 +163,6 @@ const Home = () => {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center text-gray-300"
         animate={{ y: [0, 10, 0] }}

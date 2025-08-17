@@ -16,7 +16,7 @@ const HireMe = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  // Animation hooks
+
   const [titleRef, titleInView] = useInView({
     threshold: 0.1,
     triggerOnce: false

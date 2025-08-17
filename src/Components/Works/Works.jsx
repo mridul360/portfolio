@@ -81,7 +81,6 @@ const Works = () => {
     await loadFull(main);
   };
 
-  // Show only 3 projects initially
   const displayedProjects = showAllProjects ? allProjects : allProjects.slice(0, 3);
 
   const cardVariants = {
@@ -114,7 +113,7 @@ const Works = () => {
 
   return (
     <section id='works' className='min-h-screen py-20 flex items-center relative overflow-hidden'>
-      {/* Background elements same as before */}
+    
       <div className="absolute inset-0 bg-gradient-to-br from-[#0a1128] via-[#0f172a] to-[#14213d] z-0"></div>
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMCAwaDQwdjQwSDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTAgMEg0MFY0MEgweiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=')] opacity-20 z-0"></div>
       <Particles
@@ -181,7 +180,6 @@ const Works = () => {
               onMouseEnter={() => setHoveredCard(project.id)}
               onMouseLeave={() => setHoveredCard(null)}
             >
-              {/* Project card content same as before */}
               <div className={`absolute inset-0 rounded-2xl bg-amber-400/10 blur-md ${hoveredCard === project.id ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}></div>
               
               <div 
@@ -194,7 +192,6 @@ const Works = () => {
                   transform: 'translateZ(0)'
                 }}
               >
-                {/* Rest of the card content */}
                 {project.featured && (
                   <div className="absolute -top-3 -right-3 bg-gradient-to-r from-amber-400 to-amber-600 text-black px-3 py-1 rounded-full text-xs font-bold shadow-lg">
                     Featured

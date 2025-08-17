@@ -7,7 +7,6 @@ import { SiTailwindcss } from "react-icons/si";
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 
-// Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -43,6 +42,45 @@ const imageVariants = {
   }
 };
 
+const techStack = [
+  { 
+    icon: <FaHtml5 className='text-orange-500 text-xl' />, 
+    name: 'HTML5',
+    color: 'text-orange-500',
+    hoverClass: 'hover:bg-orange-500/20'
+  },
+  { 
+    icon: <FaCss3Alt className='text-blue-500 text-xl' />, 
+    name: 'CSS3',
+    color: 'text-blue-500',
+    hoverClass: 'hover:bg-blue-500/20'
+  },
+  { 
+    icon: <FaJsSquare className='text-yellow-400 text-xl' />, 
+    name: 'JavaScript',
+    color: 'text-yellow-400',
+    hoverClass: 'hover:bg-yellow-400/20'
+  },
+  { 
+    icon: <FaReact className='text-blue-400 text-xl' />, 
+    name: 'React',
+    color: 'text-blue-400',
+    hoverClass: 'hover:bg-blue-400/20'
+  },
+  { 
+    icon: <SiTailwindcss className='text-cyan-400 text-xl' />, 
+    name: 'Tailwind',
+    color: 'text-cyan-400',
+    hoverClass: 'hover:bg-cyan-400/20'
+  },
+  { 
+    icon: <FaBootstrap className='text-purple-500 text-xl' />, 
+    name: 'Bootstrap',
+    color: 'text-purple-500',
+    hoverClass: 'hover:bg-purple-500/20'
+  }
+];
+
 const Aboutme = () => {
   const [ref, inView] = useInView({
     threshold: 0.1,
@@ -62,7 +100,6 @@ const Aboutme = () => {
           animate={inView ? "visible" : "hidden"}
           variants={containerVariants}
         >
-          {/* Text Content */}
           <motion.div 
             className='lg:w-3/5 mt-65 text-white'
             variants={containerVariants}
@@ -86,41 +123,43 @@ const Aboutme = () => {
               technologies.
             </motion.p>
             
-            {/* Tech Stack */}
             <motion.div 
               className='mb-8'
               variants={itemVariants}
             >
               <h3 className='text-xl font-semibold mb-4 text-gray-200'>Tech Stack</h3>
               <div className='flex flex-wrap gap-4'>
-                {[
-                  { icon: <FaHtml5 className='text-orange-500 text-xl' />, name: 'HTML5' },
-                  { icon: <FaCss3Alt className='text-blue-500 text-xl' />, name: 'CSS3' },
-                  { icon: <FaJsSquare className='text-yellow-400 text-xl' />, name: 'JavaScript' },
-                  { icon: <FaReact className='text-blue-400 text-xl' />, name: 'React' },
-                  { icon: <SiTailwindcss className='text-cyan-400 text-xl' />, name: 'Tailwind' },
-                  { icon: <FaBootstrap className='text-purple-500 text-xl' />, name: 'Bootstrap' }
-                ].map((tech, index) => (
+                {techStack.map((tech, index) => (
                   <motion.div 
                     key={index}
-                    className='flex items-center gap-2 bg-gray-800 px-4 py-2 rounded-full'
+                    className={`flex items-center gap-2 bg-gray-800 px-4 py-2 rounded-full transition-all duration-300 cursor-pointer ${tech.hoverClass}`}
                     variants={itemVariants}
                     custom={index * 0.1}
+                    whileHover={{ 
+                      y: -5,
+                      scale: 1.05,
+                      transition: { duration: 0.1 }
+                    }}
                   >
-                    {tech.icon}
+                    <motion.span 
+                      whileHover={{ scale: 1.2 }}
+                      transition={{ duration: 0.1 }}
+                      className={tech.color}
+                    >
+                      {tech.icon}
+                    </motion.span>
                     <span>{tech.name}</span>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
             
-            {/* Social Links */}
             <motion.div variants={itemVariants}>
               <h3 className='text-xl font-semibold mb-4 text-gray-200'>Connect With Me</h3>
               <div className='flex gap-4'>
                 {[
-                  { icon: <FaGithub className='text-2xl' />, url: '#' },
-                  { icon: <FaLinkedin className='text-2xl' />, url: '#' },
+                  { icon: <FaGithub className='text-2xl' />, url: 'https://github.com/mridul360' },
+                  { icon: <FaLinkedin className='text-2xl' />, url: 'https://www.linkedin.com/in/mridul-hasan-mh1207' },
                   { icon: <FaXTwitter className='text-2xl' />, url: '#' }
                 ].map((social, index) => (
                   <motion.a 
@@ -129,7 +168,11 @@ const Aboutme = () => {
                     className='text-gray-400 hover:text-white transition-colors'
                     variants={itemVariants}
                     custom={index * 0.1}
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{ 
+                      scale: 1.2,
+                      y: -5,
+                      transition: { duration: 0.2 }
+                    }}
                   >
                     {social.icon}
                   </motion.a>
