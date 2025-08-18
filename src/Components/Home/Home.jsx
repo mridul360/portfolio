@@ -71,7 +71,7 @@ const Home = () => {
         >
 
           <motion.div
-            className="text-white"
+            className="text-white ml-20"
             variants={container}
           >
             <motion.p className="text-yellow-400 font-mono mb-2" variants={item}>
@@ -130,7 +130,7 @@ const Home = () => {
           </motion.div>
 
           <motion.div
-            className="flex justify-center"
+            className="flex justify-center ml-15"
             variants={image}
           >
             <div className="relative">
