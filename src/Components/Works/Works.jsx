@@ -110,7 +110,13 @@ const Works = () => {
   };
 
   const toggleAllProjects = () => {
-    setShowAllProjects((isShowingAll) => !isShowingAll);
+    setShowAllProjects((isShowingAll) => {
+      if (isShowingAll) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      return !isShowingAll;
+    });
   };
 
   return (
