@@ -125,8 +125,16 @@ const Works = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >
+          <motion.p
+            initial={{ opacity: 0, letterSpacing: '0.05em' }}
+            animate={{ opacity: 1, letterSpacing: '0.3em' }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className='mb-4 text-xs font-semibold uppercase text-amber-300'
+          >
+            Selected work archive
+          </motion.p>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 relative inline-block">
-            <span className="relative z-10">My <span className="text-amber-400">Projects</span></span>
+            <span className="relative z-10">My <span className="text-amber-400">Work Tree</span></span>
             <span className="absolute -bottom-2 left-0 w-full h-2 bg-amber-400/30 z-0"></span>
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto relative">
@@ -135,7 +143,12 @@ const Works = () => {
           </p>
         </motion.div>
 
-        <motion.div layout className="grid grid-cols-1 gap-8 px-4 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div layout className="relative grid grid-cols-1 gap-6 px-2 sm:px-4 md:grid-cols-2 lg:gap-x-12 before:absolute before:bottom-0 before:left-1/2 before:top-0 before:hidden before:w-px before:-translate-x-1/2 before:bg-linear-to-b before:from-transparent before:via-amber-300/40 before:to-transparent lg:before:block">
+          <motion.div
+            className='pointer-events-none absolute left-1/2 top-0 z-10 hidden h-28 w-px -translate-x-1/2 bg-linear-to-b from-amber-200 via-amber-400 to-transparent lg:block'
+            animate={{ opacity: [0.35, 1, 0.35], scaleY: [0.8, 1, 0.8] }}
+            transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+          />
           <AnimatePresence mode="popLayout">
             {displayedProjects.map((project, i) => (
             <motion.div
@@ -147,36 +160,45 @@ const Works = () => {
               exit="exit"
               whileHover="hover"
               variants={cardVariants}
-              className="relative group"
+              className={`group relative lg:before:absolute lg:before:top-1/2 lg:before:h-px lg:before:w-8 lg:before:bg-amber-300/40 ${i % 2 === 0 ? 'lg:mr-8 lg:before:-right-8' : 'lg:ml-8 lg:before:-left-8'}`}
               onMouseEnter={() => setHoveredCard(project.id)}
               onMouseLeave={() => setHoveredCard(null)}
             >
+              <motion.span
+                className={`absolute top-1/2 z-10 hidden h-3 w-3 -translate-y-1/2 rounded-full border-2 border-amber-200 bg-amber-400 shadow-[0_0_16px_rgba(251,191,36,0.9)] lg:block ${i % 2 === 0 ? '-right-9.5' : '-left-9.5'}`}
+                animate={{ scale: [1, 1.35, 1], boxShadow: ['0 0 8px rgba(251,191,36,0.5)', '0 0 22px rgba(251,191,36,1)', '0 0 8px rgba(251,191,36,0.5)'] }}
+                transition={{ duration: 2.4, delay: i * 0.12, repeat: Infinity, ease: 'easeInOut' }}
+              />
               <div className={`absolute inset-0 rounded-2xl bg-amber-400/10 blur-sm ${hoveredCard === project.id ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}></div>
               
               <motion.div 
-                className={`relative h-full p-6 rounded-2xl transition-all duration-500 ${project.featured ? 'border-2 border-amber-400' : 'border border-gray-700/50'}`}
+                className={`relative h-full rounded-2xl p-4 transition-all duration-500 sm:p-5 ${project.featured ? 'border-2 border-amber-400' : 'border border-gray-700/50'}`}
                 style={{
                   background: 'rgba(15, 15, 25, 0.7)',
                   boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
                 }}
               >
+                <div className='mb-3 flex items-center justify-between border-b border-white/10 pb-2 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-gray-500'>
+                  <span>Node {String(i + 1).padStart(2, '0')}</span>
+                  <span className='flex items-center gap-2 text-emerald-400'><span className='h-1.5 w-1.5 rounded-full bg-emerald-400'></span>Live</span>
+                </div>
                 {project.featured && (
                   <div className="absolute -top-3 -right-3 bg-linear-to-r from-amber-400 to-amber-600 text-black px-3 py-1 rounded-full text-xs font-bold shadow-lg">
                     Featured
                   </div>
                 )}
                 
-                <h3 className={`text-2xl font-bold mb-2 relative ${project.featured ? 'text-amber-400' : 'text-white'}`}>
+                <h3 className={`relative mb-1 text-xl font-bold ${project.featured ? 'text-amber-400' : 'text-white'}`}>
                   {project.title}
                   <span className="absolute -bottom-1 left-0 w-8 h-0.5 bg-amber-400"></span>
                 </h3>
                 
-                <p className="text-gray-300 mb-4 min-h-15">{project.description}</p>
+                <p className="mb-3 min-h-12 text-sm text-gray-300">{project.description}</p>
                 
-                <div className="relative overflow-hidden rounded-xl mb-4 group">
+                <div className="group relative mb-3 overflow-hidden rounded-xl">
                   <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
                   <img 
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-103" 
+                    className="h-36 w-full object-cover transition-transform duration-500 group-hover:scale-103 sm:h-40" 
                     src={project.image} 
                     alt={project.title} 
                   />
@@ -200,12 +222,12 @@ const Works = () => {
                   </div>
                 </div>
                 
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="mb-3 flex flex-wrap gap-1.5">
                   {project.tech.map(tech => (
                     <motion.span 
                       key={tech} 
                       whileHover={{ scale: 1.05 }}
-                      className="flex items-center px-3 py-1 rounded-full bg-gray-800/80 text-gray-200 text-sm backdrop-blur-sm"
+                      className="flex items-center rounded-full bg-gray-800/80 px-2.5 py-1 text-xs text-gray-200 backdrop-blur-sm"
                     >
                       {techIcons[tech] || null}
                       <span className="ml-1">{tech}</span>
@@ -213,7 +235,7 @@ const Works = () => {
                   ))}
                 </div>
                 
-                <div className="flex justify-between mt-4 gap-3">
+                <div className="mt-3 flex justify-between gap-2">
                   <motion.a 
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}

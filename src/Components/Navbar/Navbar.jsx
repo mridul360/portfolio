@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
 import logo from "../../assets/logo2.png";
 import Container from '../Layout/Container';
@@ -7,6 +8,7 @@ import Container from '../Layout/Container';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const links = [
+    { label: 'Home', to: '/' },
     { label: 'About Me', to: '/about' },
     { label: 'Recent Works', to: '/works' },
     { label: 'Reviews', to: '/reviews' },
@@ -42,32 +44,62 @@ const Navbar = () => {
             ))}
           </ul>
 
-          <button
+          <motion.button
             type="button"
             className='rounded-md p-2 text-2xl text-white transition hover:bg-white/10 lg:hidden'
             onClick={() => setIsMenuOpen((open) => !open)}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"
             aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            whileTap={{ scale: 0.88 }}
           >
-            {isMenuOpen ? <FiX /> : <FiMenu />}
-          </button>
+            <motion.span
+              className='block'
+              animate={{ rotate: isMenuOpen ? 90 : 0 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+            >
+              {isMenuOpen ? <FiX /> : <FiMenu />}
+            </motion.span>
+          </motion.button>
 
-          <div id="mobile-navigation" className={`${isMenuOpen ? 'block' : 'hidden'} absolute left-0 top-full w-full rounded-b-xl border border-white/10 bg-slate-950/95 p-4 shadow-xl backdrop-blur lg:hidden`}>
-            <ul className='space-y-1 font-bold'>
-              {links.map((link) => (
-                <li key={link.to}>
-                  <NavLink
-                    to={link.to}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={({ isActive }) => `block cursor-pointer rounded-md px-4 py-3 text-white transition-colors hover:bg-white/10 hover:text-blue-400 ${isActive ? 'active' : ''}`}
-                  >
-                    {link.label}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <AnimatePresence>
+            {isMenuOpen && (
+              <motion.div
+                id="mobile-navigation"
+                initial={{ opacity: 0, height: 0, y: -8 }}
+                animate={{ opacity: 1, height: 'auto', y: 0 }}
+                exit={{ opacity: 0, height: 0, y: -8 }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                className='absolute left-0 top-full w-full overflow-hidden rounded-b-xl border border-white/10 bg-slate-950/95 p-4 shadow-xl backdrop-blur lg:hidden'
+              >
+                <motion.ul
+                  className='space-y-1 font-bold'
+                  initial='hidden'
+                  animate='visible'
+                  variants={{
+                    hidden: {},
+                    visible: { transition: { staggerChildren: 0.06, delayChildren: 0.08 } }
+                  }}
+                >
+                  {links.map((link) => (
+                    <motion.li
+                      key={link.to}
+                      variants={{ hidden: { opacity: 0, x: -12 }, visible: { opacity: 1, x: 0 } }}
+                      transition={{ duration: 0.25, ease: 'easeOut' }}
+                    >
+                      <NavLink
+                        to={link.to}
+                        onClick={() => setIsMenuOpen(false)}
+                        className={({ isActive }) => `block cursor-pointer rounded-md px-4 py-3 text-white transition-colors hover:bg-white/10 hover:text-blue-400 ${isActive ? 'active' : ''}`}
+                      >
+                        {link.label}
+                      </NavLink>
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </Container>
     </nav>

@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router-dom';
-import { FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6';
 import { FiArrowDownCircle, FiExternalLink } from 'react-icons/fi';
 import me from '../../assets/me3.jpg';
 import ContactButton from '../ContactButton/ContactButton';
@@ -14,7 +13,7 @@ const Home = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.14,
         delayChildren: 0.1
       }
     }
@@ -64,6 +63,18 @@ const Home = () => {
       ref={ref}
     >
       <div className="absolute inset-0 bg-black/30"></div>
+      <motion.div
+        className='pointer-events-none absolute -right-48 top-1/2 hidden h-[38rem] w-[38rem] -translate-y-1/2 rounded-full border border-yellow-300/10 md:block'
+        initial={{ rotate: -18, scale: 0.92, opacity: 0 }}
+        animate={{ rotate: 342, scale: 1, opacity: 1 }}
+        transition={{ rotate: { duration: 28, repeat: Infinity, ease: 'linear' }, scale: { duration: 1.2, ease: [0.22, 1, 0.36, 1] }, opacity: { duration: 1 } }}
+      />
+      <motion.div
+        className='pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-linear-to-r from-yellow-300/5 to-transparent'
+        initial={{ x: '-100%', opacity: 0 }}
+        animate={{ x: '100%', opacity: [0, 1, 0] }}
+        transition={{ duration: 2.4, delay: 0.4, ease: 'easeInOut' }}
+      />
 
       <div className="container relative z-10 mx-auto flex w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -82,6 +93,12 @@ const Home = () => {
 
             <motion.h1 className="mb-3 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl" variants={item}>
               Mridul <span className="text-yellow-400">Hasan</span>
+              <motion.span
+                className='mt-3 block h-1 w-20 rounded-full bg-yellow-400 md:w-28'
+                initial={{ width: 0, opacity: 0 }}
+                animate={inView ? { width: '7rem', opacity: 1 } : { width: 0, opacity: 0 }}
+                transition={{ delay: 0.7, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              />
             </motion.h1>
 
             <motion.h2 className="mb-4 text-xl text-gray-300 sm:text-2xl md:text-3xl" variants={item}>
@@ -93,7 +110,11 @@ const Home = () => {
             </motion.p>
 
             <motion.div className="mb-8 flex justify-center md:hidden" variants={image}>
-              <div className="relative">
+              <motion.div
+                className="relative"
+                animate={{ y: [0, -7, 0] }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+              >
                 <motion.img
                   src={me}
                   alt="Mridul Hasan"
@@ -107,14 +128,13 @@ const Home = () => {
                 <div className="absolute -right-2 -top-3 rounded-full bg-gray-800/90 px-3 py-2 text-sm sm:-right-5 sm:text-base">
                   <span className="font-bold text-yellow-400">5+</span> Projects
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
 
             <motion.div className="mb-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4 md:justify-start" variants={item}>
               <motion.button
                 className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-yellow-400 px-5 py-3 text-sm font-bold text-black transition hover:bg-yellow-300 sm:w-auto sm:px-6 sm:text-base"
-                whileHover={{ scale: 1.05 }}
-              whileHover={{ scale: 1.03 }}
+                whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2, ease: 'easeOut' }}
               >
@@ -123,43 +143,15 @@ const Home = () => {
 
               <motion.button
                 className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full border-2 border-yellow-400 px-5 py-3 text-sm font-bold text-white transition hover:bg-yellow-400 hover:text-black sm:w-auto sm:px-6 sm:text-base"
-                whileHover={{ scale: 1.05 }}
-              whileHover={{ scale: 1.03 }}
+                whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2, ease: 'easeOut' }}
-                            <motion.div
-                              className="relative"
-                              animate={{ y: [0, -8, 0] }}
-                              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                            >
-                            </motion.div>
                 onClick={() => {
                   navigate('/works');
                 }}
               >
                 <FiExternalLink /> My Projects
               </motion.button>
-            </motion.div>
-
-            <motion.div className="flex justify-center gap-4 md:justify-start" variants={item}>
-              {[
-                { icon: <FaGithub />, label: 'GitHub', url: 'https://github.com/mridul360' },
-                { icon: <FaLinkedin />, label: 'LinkedIn', url: 'https://www.linkedin.com/in/mridul-hasan-mh1207' },
-                { icon: <FaXTwitter />, label: 'Twitter', url: 'https://twitter.com' }
-              ].map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="text-gray-300 transition hover:-translate-y-1 hover:text-yellow-400"
-                  whileHover={{ y: -3 }}
-                  variants={item}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
             </motion.div>
 
             <motion.div className='mt-7 flex justify-center md:justify-start' variants={item}>
@@ -171,7 +163,11 @@ const Home = () => {
             className="hidden justify-center md:flex"
             variants={image}
           >
-            <div className="relative mx-auto max-w-[calc(100vw-3rem)]">
+            <motion.div
+              className="relative mx-auto max-w-[calc(100vw-3rem)]"
+              animate={{ y: [0, -7, 0] }}
+              transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+            >
               <motion.img
                 src={me}
                 alt="Mridul Hasan"
@@ -196,7 +192,7 @@ const Home = () => {
               >
                 <span className="text-yellow-400 font-bold">5+</span> Projects
               </motion.div>
-            </div>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
