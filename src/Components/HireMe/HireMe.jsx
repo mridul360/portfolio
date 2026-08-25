@@ -78,15 +78,17 @@ const HireMe = () => {
           method: 'POST',
           headers: {
             Accept: 'application/json',
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: JSON.stringify({
+          body: new URLSearchParams({
             _subject: `New project request from ${formData.firstName} ${formData.lastName}`,
             _template: 'table',
+            _captcha: 'false',
+            _next: 'https://portfolio-chi-ten-ifiqhq1ix8.vercel.app/hire',
             name: `${formData.firstName} ${formData.lastName}`,
             email: formData.email,
             message: formData.projectDetails,
-          }),
+          }).toString(),
         });
 
         if (!response.ok) {
