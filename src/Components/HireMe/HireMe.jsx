@@ -77,9 +77,15 @@ const HireMe = () => {
       setIsSubmitting(true);
       try {
         const submitForm = document.createElement('form');
+        const responseFrame = document.createElement('iframe');
+        const frameName = `formsubmit-response-${Date.now()}`;
         submitForm.method = 'POST';
         submitForm.action = 'https://formsubmit.co/mridulhasan222006@gmail.com';
+        submitForm.target = frameName;
         submitForm.style.display = 'none';
+        responseFrame.name = frameName;
+        responseFrame.title = 'Email submission response';
+        responseFrame.style.display = 'none';
 
         const fields = {
           _subject: `New project request from ${formData.firstName} ${formData.lastName}`,
@@ -101,8 +107,10 @@ const HireMe = () => {
           submitForm.appendChild(input);
         });
 
+        document.body.appendChild(responseFrame);
         document.body.appendChild(submitForm);
         submitForm.submit();
+        setSubmitSuccess(true);
       } catch (error) {
         console.error('Unable to send project request:', error);
         setSubmitError('Your request could not be sent. Please try again or email mridulhasan222006@gmail.com directly.');
