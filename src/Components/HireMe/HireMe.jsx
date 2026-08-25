@@ -74,21 +74,29 @@ const HireMe = () => {
     if (validateForm()) {
       setIsSubmitting(true);
       try {
-        const subject = `New project request from ${formData.firstName} ${formData.lastName}`;
-        const body = [
-          `Name: ${formData.firstName} ${formData.lastName}`,
-          `Email: ${formData.email}`,
-          '',
-          'Project details:',
-          formData.projectDetails,
-        ].join('\n');
-        const mailtoUrl = `mailto:mridul222006@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        const response = await fetch('https://formsubmit.co/ajax/mridulhasan222006@gmail.com', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            _subject: `New project request from ${formData.firstName} ${formData.lastName}`,
+            _template: 'table',
+            name: `${formData.firstName} ${formData.lastName}`,
+            email: formData.email,
+            message: formData.projectDetails,
+          }),
+        });
 
-        window.location.href = mailtoUrl;
+        if (!response.ok) {
+          throw new Error(`Email service returned ${response.status}`);
+        }
+
         setSubmitSuccess(true);
       } catch (error) {
-        console.error('Unable to open email composer:', error);
-        setSubmitError('We could not open your email app. Please email mridul222006@gmail.com directly.');
+        console.error('Unable to send project request:', error);
+        setSubmitError('Your request could not be sent. Please try again or email mridulhasan222006@gmail.com directly.');
       } finally {
         setIsSubmitting(false);
       }
@@ -97,20 +105,20 @@ const HireMe = () => {
 
   if (submitSuccess) {
     return (
-      <section id="hire" className="min-h-screen bg-linear-to-br from-gray-900 to-gray-800 flex items-center">
-        <Container className="py-12">
+      <section id="hire" className="flex min-h-dvh items-center bg-linear-to-br from-gray-900 to-gray-800 px-0 py-20 sm:py-24">
+        <Container className="py-8 sm:py-12">
           <motion.div
             ref={successRef}
             initial={{ opacity: 0, y: 50 }}
             animate={successInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-md mx-auto text-center bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700"
+            className="mx-auto max-w-md rounded-2xl border border-gray-700 bg-gray-800 p-5 text-center shadow-2xl sm:p-8"
           >
             <motion.div
               initial={{ scale: 0 }}
               animate={successInView ? { scale: 1 } : {}}
               transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
-              className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4"
+              className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -130,14 +138,14 @@ const HireMe = () => {
               transition={{ delay: 0.6 }}
               className="text-gray-300 mb-6"
             >
-              Your email app has opened with all project details ready. Press Send in your email app to complete your request.
+              Your project request was sent successfully. I will get back to you soon.
             </motion.p>
             <motion.button
               initial={{ opacity: 0 }}
               animate={successInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.8 }}
               onClick={() => setSubmitSuccess(false)}
-              className="px-6 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition transform hover:-translate-y-1 shadow-lg"
+              className="min-h-11 rounded-lg bg-emerald-600 px-5 py-2 text-sm font-medium text-white shadow-lg transition hover:-translate-y-1 hover:bg-emerald-700 sm:px-6"
             >
               Submit Another Project
             </motion.button>
@@ -148,20 +156,20 @@ const HireMe = () => {
   }
 
   return (
-    <section id="hire" className="min-h-screen bg-linear-to-br from-gray-900 to-gray-800 flex items-center">
-      <Container className="py-12">
-        <div className="max-w-2xl mx-auto">
+    <section id="hire" className="flex min-h-dvh items-center bg-linear-to-br from-gray-900 to-gray-800 px-0 py-20 sm:py-24">
+      <Container className="py-8 sm:py-12">
+        <div className="mx-auto w-full max-w-2xl">
           <motion.div
             ref={titleRef}
             initial={{ opacity: 0, y: 50 }}
             animate={titleInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="text-center mb-10"
+            className="mb-8 text-center sm:mb-10"
           >
-            <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400 mb-3">
+            <h2 className="mb-3 bg-linear-to-r from-emerald-400 to-cyan-400 bg-clip-text text-3xl font-bold text-transparent sm:text-4xl">
               Let's Work Together
             </h2>
-            <p className="text-gray-400 text-lg">
+            <p className="text-base text-gray-400 sm:text-lg">
               Tell me about your project and I'll get back to you soon
             </p>
           </motion.div>
@@ -171,9 +179,9 @@ const HireMe = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={formInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700"
+            className="rounded-2xl border border-gray-700 bg-gray-800 p-5 shadow-2xl sm:p-8"
           >
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form className="space-y-5 sm:space-y-6" onSubmit={handleSubmit}>
               <motion.div 
                 className="grid grid-cols-1 gap-6 sm:grid-cols-2"
                 initial={{ opacity: 0 }}
@@ -186,7 +194,7 @@ const HireMe = () => {
                     visible: { opacity: 1, y: 0 }
                   }}
                 >
-                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="firstName" className="mb-2 block text-sm font-medium text-gray-300">
                     First Name *
                   </label>
                   <input
@@ -195,7 +203,7 @@ const HireMe = () => {
                     id="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
-                    className={`block w-full px-4 py-3 rounded-lg bg-gray-700 border ${errors.firstName ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-gray-600 focus:ring-emerald-500 focus:border-emerald-500'} text-white placeholder-gray-400`}
+                    className={`block min-h-12 w-full rounded-lg border bg-gray-700 px-4 py-3 text-white placeholder-gray-400 outline-none transition focus:ring-2 ${errors.firstName ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-gray-600 focus:ring-emerald-500 focus:border-emerald-500'}`}
                     placeholder="John"
                   />
                   {errors.firstName && <p className="mt-2 text-sm text-red-400">{errors.firstName}</p>}
@@ -207,7 +215,7 @@ const HireMe = () => {
                     visible: { opacity: 1, y: 0 }
                   }}
                 >
-                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="lastName" className="mb-2 block text-sm font-medium text-gray-300">
                     Last Name
                   </label>
                   <input
@@ -216,7 +224,7 @@ const HireMe = () => {
                     id="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
-                    className="block w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 text-white placeholder-gray-400"
+                    className="block min-h-12 w-full rounded-lg border border-gray-600 bg-gray-700 px-4 py-3 text-white placeholder-gray-400 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500"
                     placeholder="Doe"
                   />
                 </motion.div>
@@ -227,7 +235,7 @@ const HireMe = () => {
                 animate={formInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.3 }}
               >
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-300">
                   Email Address *
                 </label>
                 <input
@@ -236,7 +244,7 @@ const HireMe = () => {
                   type="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`block w-full px-4 py-3 rounded-lg bg-gray-700 border ${errors.email ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-gray-600 focus:ring-emerald-500 focus:border-emerald-500'} text-white placeholder-gray-400`}
+                  className={`block min-h-12 w-full rounded-lg border bg-gray-700 px-4 py-3 text-white placeholder-gray-400 outline-none transition focus:ring-2 ${errors.email ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-gray-600 focus:ring-emerald-500 focus:border-emerald-500'}`}
                   placeholder="your@email.com"
                 />
                 {errors.email && <p className="mt-2 text-sm text-red-400">{errors.email}</p>}
@@ -247,7 +255,7 @@ const HireMe = () => {
                 animate={formInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.4 }}
               >
-                <label htmlFor="projectDetails" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="projectDetails" className="mb-2 block text-sm font-medium text-gray-300">
                   Project Details *
                 </label>
                 <textarea
@@ -256,7 +264,7 @@ const HireMe = () => {
                   rows={5}
                   value={formData.projectDetails}
                   onChange={handleChange}
-                  className={`block w-full px-4 py-3 rounded-lg bg-gray-700 border ${errors.projectDetails ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-gray-600 focus:ring-emerald-500 focus:border-emerald-500'} text-white placeholder-gray-400`}
+                  className={`block min-h-32 w-full resize-y rounded-lg border bg-gray-700 px-4 py-3 text-white placeholder-gray-400 outline-none transition focus:ring-2 ${errors.projectDetails ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-gray-600 focus:ring-emerald-500 focus:border-emerald-500'}`}
                   placeholder="Describe your project in detail..."
                 />
                 {errors.projectDetails && <p className="mt-2 text-sm text-red-400">{errors.projectDetails}</p>}
@@ -284,7 +292,7 @@ const HireMe = () => {
                     className="w-4 h-4 rounded bg-gray-700 border-gray-600 focus:ring-emerald-500 focus:ring-2"
                   />
                 </div>
-                <div className="ml-3 text-sm">
+                <div className="ml-3 text-sm leading-6">
                   <label htmlFor="terms" className="font-medium text-gray-300">
                     I agree to the <a href="#" className="text-emerald-400 hover:text-emerald-300">Terms and Conditions</a> *
                   </label>
@@ -300,7 +308,7 @@ const HireMe = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full flex justify-center items-center py-3 px-6 rounded-lg bg-linear-to-r from-emerald-600 to-cyan-600 hover:from-emerald-700 hover:to-cyan-700 text-white font-medium shadow-lg transform transition hover:-translate-y-1 ${isSubmitting ? 'opacity-80 cursor-not-allowed' : ''}`}
+                  className={`flex min-h-12 w-full items-center justify-center rounded-lg bg-linear-to-r from-emerald-600 to-cyan-600 px-6 py-3 font-medium text-white shadow-lg transition hover:-translate-y-1 hover:from-emerald-700 hover:to-cyan-700 ${isSubmitting ? 'cursor-not-allowed opacity-80' : ''}`}
                 >
                   {isSubmitting ? (
                     <>
