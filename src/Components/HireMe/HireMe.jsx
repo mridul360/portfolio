@@ -15,6 +15,7 @@ const HireMe = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
 
   const [titleRef, titleInView] = useInView({
@@ -69,14 +70,25 @@ const HireMe = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitError('');
     if (validateForm()) {
       setIsSubmitting(true);
       try {
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        console.log('Form submitted:', formData);
+        const subject = `New project request from ${formData.firstName} ${formData.lastName}`;
+        const body = [
+          `Name: ${formData.firstName} ${formData.lastName}`,
+          `Email: ${formData.email}`,
+          '',
+          'Project details:',
+          formData.projectDetails,
+        ].join('\n');
+        const mailtoUrl = `mailto:mridul222006@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        window.location.href = mailtoUrl;
         setSubmitSuccess(true);
       } catch (error) {
-        console.error('Submission error:', error);
+        console.error('Unable to open email composer:', error);
+        setSubmitError('We could not open your email app. Please email mridul222006@gmail.com directly.');
       } finally {
         setIsSubmitting(false);
       }
@@ -85,7 +97,7 @@ const HireMe = () => {
 
   if (submitSuccess) {
     return (
-      <section id="hire" className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center">
+      <section id="hire" className="min-h-screen bg-linear-to-br from-gray-900 to-gray-800 flex items-center">
         <Container className="py-12">
           <motion.div
             ref={successRef}
@@ -118,7 +130,7 @@ const HireMe = () => {
               transition={{ delay: 0.6 }}
               className="text-gray-300 mb-6"
             >
-              Your project details have been submitted successfully. I'll get back to you within 24 hours.
+              Your email app has opened with all project details ready. Press Send in your email app to complete your request.
             </motion.p>
             <motion.button
               initial={{ opacity: 0 }}
@@ -136,7 +148,7 @@ const HireMe = () => {
   }
 
   return (
-    <section id="hire" className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center">
+    <section id="hire" className="min-h-screen bg-linear-to-br from-gray-900 to-gray-800 flex items-center">
       <Container className="py-12">
         <div className="max-w-2xl mx-auto">
           <motion.div
@@ -146,7 +158,7 @@ const HireMe = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-10"
           >
-            <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 mb-3">
+            <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400 mb-3">
               Let's Work Together
             </h2>
             <p className="text-gray-400 text-lg">
@@ -250,6 +262,12 @@ const HireMe = () => {
                 {errors.projectDetails && <p className="mt-2 text-sm text-red-400">{errors.projectDetails}</p>}
               </motion.div>
 
+              {submitError && (
+                <p role="alert" className="rounded-lg border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+                  {submitError}
+                </p>
+              )}
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={formInView ? { opacity: 1, y: 0 } : {}}
@@ -282,7 +300,7 @@ const HireMe = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full flex justify-center items-center py-3 px-6 rounded-lg bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-700 hover:to-cyan-700 text-white font-medium shadow-lg transform transition hover:-translate-y-1 ${isSubmitting ? 'opacity-80 cursor-not-allowed' : ''}`}
+                  className={`w-full flex justify-center items-center py-3 px-6 rounded-lg bg-linear-to-r from-emerald-600 to-cyan-600 hover:from-emerald-700 hover:to-cyan-700 text-white font-medium shadow-lg transform transition hover:-translate-y-1 ${isSubmitting ? 'opacity-80 cursor-not-allowed' : ''}`}
                 >
                   {isSubmitting ? (
                     <>
