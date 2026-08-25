@@ -84,6 +84,8 @@ const HireMe = () => {
           _template: 'table',
           _captcha: 'false',
           _next: 'https://portfolio-chi-ten-ifiqhq1ix8.vercel.app/hire',
+          _url: 'https://portfolio-chi-ten-ifiqhq1ix8.vercel.app/hire',
+          _replyto: formData.email,
           name: `${formData.firstName} ${formData.lastName}`,
           email: formData.email,
           message: formData.projectDetails,
