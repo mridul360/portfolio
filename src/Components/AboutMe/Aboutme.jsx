@@ -2,10 +2,10 @@ import React from 'react';
 import me2 from '../../assets/me5.jpg';
 import Container from '../Layout/Container';
 import { FaBootstrap, FaCss3Alt, FaHtml5, FaJsSquare, FaReact } from 'react-icons/fa';
-import { FiGithub, FiLinkedin, FiMessageCircle, FiTwitter, FiX } from 'react-icons/fi';
 import { SiTailwindcss } from "react-icons/si";
 import { useInView } from 'react-intersection-observer';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
+import ContactButton from '../ContactButton/ContactButton';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -82,7 +82,6 @@ const techStack = [
 ];
 
 const Aboutme = () => {
-  const [isContactOpen, setIsContactOpen] = React.useState(false);
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true
@@ -91,29 +90,29 @@ const Aboutme = () => {
   return (
     <section 
       id='about' 
-      className='relative flex min-h-screen items-center overflow-hidden bg-linear-to-br from-gray-900 to-black py-24 sm:py-28'
+      className='relative flex min-h-screen items-center overflow-hidden bg-linear-to-br from-gray-900 to-black px-0 py-20 sm:py-24 lg:py-28'
       ref={ref}
     >
       <Container>
         <motion.div 
-          className='relative z-10 flex flex-col items-center gap-12 lg:flex-row lg:gap-16'
+          className='relative z-10 flex w-full flex-col items-center gap-10 sm:gap-12 lg:flex-row lg:gap-16'
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={containerVariants}
         >
           <motion.div 
-            className='text-center text-white lg:w-3/5 lg:text-left'
+            className='min-w-0 w-full max-w-3xl text-center text-white lg:w-3/5 lg:text-left'
             variants={containerVariants}
           >
             <motion.h2 
-              className='mb-6 bg-linear-to-r from-purple-400 to-blue-500 bg-clip-text text-4xl font-bold text-transparent md:text-5xl'
+              className='mb-5 bg-linear-to-r from-purple-400 to-blue-500 bg-clip-text text-3xl font-bold text-transparent sm:mb-6 sm:text-4xl md:text-5xl'
               variants={itemVariants}
             >
               About Me
             </motion.h2>
             
             <motion.p 
-              className='mb-8 text-base leading-relaxed text-gray-300 md:text-xl'
+              className='mb-8 text-base leading-relaxed text-gray-300 sm:text-lg md:text-xl'
               variants={itemVariants}
             >
               I am a passionate Frontend Developer with entry-level experience building responsive, 
@@ -123,6 +122,20 @@ const Aboutme = () => {
               Dedicated to writing clean, maintainable code and staying updated with the latest frontend 
               technologies.
             </motion.p>
+
+            <motion.div
+              className='mb-8 flex justify-center sm:mb-10 lg:hidden'
+              variants={imageVariants}
+            >
+              <div className='relative'>
+                <div className='absolute -inset-3 rounded-full bg-linear-to-r from-purple-600 to-blue-500 blur-md opacity-75'></div>
+                <img
+                  className='relative h-56 w-56 rounded-full border-4 border-gray-800 object-cover sm:h-72 sm:w-72'
+                  src={me2}
+                  alt='Profile'
+                />
+              </div>
+            </motion.div>
             
             <motion.div 
               className='mb-8'
@@ -130,12 +143,12 @@ const Aboutme = () => {
             >
               <h3 className='text-xl font-semibold mb-4 text-gray-200'>Tech Stack</h3>
               <div
-                className='group overflow-hidden rounded-2xl border border-white/10 bg-black/10 px-2 py-4'
+                className='group w-full min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-black/10 px-1 py-3 sm:px-2 sm:py-4'
                 style={{ maskImage: 'linear-gradient(to right, transparent, black 9%, black 91%, transparent)' }}
                 aria-label='Technology stack'
               >
                 <motion.div
-                  className='flex w-max gap-3 pr-3 sm:gap-4'
+                  className='flex w-max gap-2 pr-2 sm:gap-4 sm:pr-3'
                   initial={{ x: 0 }}
                   animate={inView ? { x: ['0%', '-50%'] } : { x: 0 }}
                   transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
@@ -144,7 +157,7 @@ const Aboutme = () => {
                     <motion.div 
                       key={`${tech.name}-${index}`}
                       aria-hidden={index >= techStack.length}
-                      className={`flex shrink-0 cursor-pointer items-center gap-2 rounded-full border border-white/10 bg-gray-800 px-4 py-2 transition-all duration-300 ${tech.hoverClass}`}
+                      className={`flex shrink-0 cursor-pointer items-center gap-2 rounded-full border border-white/10 bg-gray-800 px-3 py-2 text-sm transition-all duration-300 sm:px-4 sm:text-base ${tech.hoverClass}`}
                       whileHover={{ 
                         y: -8,
                         scale: 1.06,
@@ -166,80 +179,19 @@ const Aboutme = () => {
               </div>
             </motion.div>
 
-            <motion.div className='relative z-20 flex flex-col items-center lg:items-start' variants={itemVariants}>
-              <motion.button
-                type='button'
-                onClick={() => setIsContactOpen((open) => !open)}
-                aria-expanded={isContactOpen}
-                aria-label={isContactOpen ? 'Close contact links' : 'Open contact links'}
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                className='flex min-h-12 items-center gap-2 rounded-full border border-yellow-300/70 bg-yellow-400 px-4 py-3 text-sm font-bold text-black shadow-lg shadow-yellow-400/20'
-              >
-                <motion.span animate={{ rotate: isContactOpen ? 90 : 0 }} transition={{ duration: 0.25 }}>
-                  {isContactOpen ? <FiX /> : <FiMessageCircle />}
-                </motion.span>
-                Contact Me
-              </motion.button>
-              <AnimatePresence>
-                {isContactOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0, scaleY: 0.6 }}
-                    animate={{ opacity: 1, height: 'auto', scaleY: 1 }}
-                    exit={{ opacity: 0, height: 0, scaleY: 0.6 }}
-                    transition={{ type: 'spring', stiffness: 260, damping: 24 }}
-                    style={{ transformOrigin: 'top center' }}
-                    className='w-full max-w-sm overflow-hidden'
-                    aria-label='Contact links'
-                  >
-                    <div className='mt-2 grid grid-cols-2 gap-2 rounded-2xl border border-white/10 bg-slate-950/90 p-2 shadow-2xl backdrop-blur-xl'>
-                      {[
-                        { label: 'GitHub', icon: <FiGithub />, href: 'https://github.com/mridul360' },
-                        { label: 'LinkedIn', icon: <FiLinkedin />, href: 'https://www.linkedin.com/in/mridul-hasan-mh1207' },
-                        { label: 'Twitter', icon: <FiTwitter />, href: 'https://twitter.com' },
-                      ].map((contactLink, index) => (
-                        <motion.a
-                          key={contactLink.label}
-                          href={contactLink.href}
-                          target='_blank'
-                          rel='noopener noreferrer'
-                          aria-label={contactLink.label}
-                          initial={{ opacity: 0, y: 8 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.08 }}
-                          whileHover={{ y: -3, scale: 1.03 }}
-                          className='flex min-w-32 items-center gap-2 rounded-xl px-3 py-2 text-sm text-gray-300 transition-colors hover:bg-yellow-400 hover:text-black'
-                        >
-                          <span className='text-lg'>{contactLink.icon}</span>
-                          {contactLink.label}
-                        </motion.a>
-                      ))}
-                      <motion.a
-                        href='/hire'
-                        aria-label='Open project form'
-                        whileHover={{ y: -3, scale: 1.03 }}
-                        className='flex min-w-32 items-center gap-2 rounded-xl px-3 py-2 text-sm text-gray-300 transition-colors hover:bg-yellow-400 hover:text-black'
-                      >
-                        <span className='text-lg'><FiMessageCircle /></span>
-                        Start a project
-                      </motion.a>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
+            <ContactButton />
             
           </motion.div>
 
           {/* Image Section */}
           <motion.div 
-            className='flex justify-center lg:w-2/5'
+            className='hidden w-full justify-center lg:flex lg:w-2/5'
             variants={imageVariants}
           >
             <div className='relative'>
               <div className='absolute -inset-4 bg-linear-to-r from-purple-600 to-blue-500 rounded-full blur-md opacity-75'></div>
               <img 
-                className='relative h-64 w-64 md:h-80 md:w-80 object-cover rounded-full border-4 border-gray-800' 
+                className='relative h-56 w-56 object-cover rounded-full border-4 border-gray-800 sm:h-72 sm:w-72 md:h-80 md:w-80' 
                 src={me2} 
                 alt="Profile" 
               />
