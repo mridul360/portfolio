@@ -1,5 +1,5 @@
 import React from 'react';
-import me2 from '../../assets/me5.jpg';
+import me2 from '../../assets/me3.jpg';
 import Container from '../Layout/Container';
 import { FaBootstrap, FaCss3Alt, FaHtml5, FaJsSquare, FaReact } from 'react-icons/fa';
 import { SiTailwindcss } from "react-icons/si";

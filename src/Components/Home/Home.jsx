@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router-dom';
 import { FiArrowDownCircle, FiExternalLink } from 'react-icons/fi';
-import me from '../../assets/me3.jpg';
+import me from '../../assets/logoo.jpeg';
 import ContactButton from '../ContactButton/ContactButton';
 
 const Home = () => {
@@ -202,7 +202,7 @@ const Home = () => {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <p className="mb-2">Change The Page</p>
+        <p className="mb-2">Next Page</p>
         <div className="w-px h-8 bg-yellow-400 mx-auto"></div>
       </motion.div>
     </section>
