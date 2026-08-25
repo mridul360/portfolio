@@ -92,20 +92,20 @@ const Works = () => {
       scale: 1,
       transition: {
         delay: i * 0.08,
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1]
+        duration: 0.7,
+        ease: [0.16, 1, 0.3, 1]
       }
     }),
     exit: {
       opacity: 0,
       y: -20,
       scale: 0.94,
-      transition: { duration: 0.25, ease: 'easeInOut' }
+      transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] }
     },
     hover: {
       y: -12,
       scale: 1.015,
-      transition: { type: 'spring', stiffness: 280, damping: 20 }
+      transition: { type: 'spring', stiffness: 240, damping: 24, mass: 0.8 }
     }
   };
 
@@ -143,7 +143,7 @@ const Works = () => {
           </p>
         </motion.div>
 
-        <motion.div layout className="relative grid grid-cols-1 gap-6 px-2 sm:px-4 md:grid-cols-2 lg:gap-x-12 before:absolute before:bottom-0 before:left-1/2 before:top-0 before:hidden before:w-px before:-translate-x-1/2 before:bg-linear-to-b before:from-transparent before:via-amber-300/40 before:to-transparent lg:before:block">
+        <motion.div layout transition={{ type: 'spring', stiffness: 180, damping: 26 }} className="relative grid grid-cols-1 gap-6 px-2 sm:px-4 md:grid-cols-2 lg:gap-x-12 before:absolute before:bottom-0 before:left-1/2 before:top-0 before:hidden before:w-px before:-translate-x-1/2 before:bg-linear-to-b before:from-transparent before:via-amber-300/40 before:to-transparent lg:before:block">
           <motion.div
             className='pointer-events-none absolute left-1/2 top-0 z-10 hidden h-28 w-px -translate-x-1/2 bg-linear-to-b from-amber-200 via-amber-400 to-transparent lg:block'
             animate={{ opacity: [0.35, 1, 0.35], scaleY: [0.8, 1, 0.8] }}
@@ -153,7 +153,8 @@ const Works = () => {
             {displayedProjects.map((project, i) => (
             <motion.div
               key={project.id}
-              layout
+              layout="position"
+              transition={{ layout: { type: 'spring', stiffness: 180, damping: 26 } }}
               custom={i}
               initial="hidden"
               animate="visible"
@@ -267,20 +268,27 @@ const Works = () => {
           </AnimatePresence>
         </motion.div>
 
-        {!showAllProjects && allProjects.length > 3 && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="text-center mt-12"
-          >
+        {allProjects.length > 3 && (
+          <motion.div layout className="mt-10 text-center sm:mt-12">
             <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              layout
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               onClick={toggleAllProjects}
-              className="px-8 py-3 bg-transparent border-2 border-amber-400 text-amber-400 rounded-full font-medium hover:bg-amber-400 hover:text-black transition-all duration-300 relative overflow-hidden group flex items-center mx-auto"
+              className="relative mx-auto flex items-center overflow-hidden rounded-full border-2 border-amber-400 bg-transparent px-6 py-3 font-medium text-amber-400 transition-colors duration-300 hover:bg-amber-400 hover:text-black sm:px-8"
             >
-              <span className="relative z-10">View All Projects ({allProjects.length - 3} more)</span>
+              <AnimatePresence initial={false}>
+                <motion.span
+                  key={showAllProjects ? 'less' : 'more'}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative z-10"
+                >
+                  {showAllProjects ? 'Show Less' : `View All Projects (${allProjects.length - 3} more)`}
+                </motion.span>
+              </AnimatePresence>
               <motion.span
                 className="relative z-10 ml-2"
                 animate={{ rotate: showAllProjects ? 180 : 0 }}
@@ -288,26 +296,6 @@ const Works = () => {
               >
                 <FiChevronDown />
               </motion.span>
-              <span className="absolute inset-0 bg-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
-            </motion.button>
-          </motion.div>
-        )}
-
-        {showAllProjects && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-center mt-12"
-          >
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={toggleAllProjects}
-              className="px-8 py-3 bg-transparent border-2 border-amber-400 text-amber-400 rounded-full font-medium hover:bg-amber-400 hover:text-black transition-all duration-300 relative overflow-hidden group flex items-center mx-auto"
-            >
-              <span className="relative z-10">Show Less</span>
-              <span className="absolute inset-0 bg-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
             </motion.button>
           </motion.div>
         )}
