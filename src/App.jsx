@@ -1,13 +1,14 @@
 import './App.css'
-import { useEffect, useLayoutEffect } from 'react'
+import { lazy, Suspense, useEffect, useLayoutEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import Home from './Components/Home/Home'
 import Navbar from './Components/Navbar/Navbar'
-import Works from './Components/Works/Works'
-import Aboutme from './Components/AboutMe/Aboutme'
-import Reviews from './Components/Reviews/Reviews'
-import HireMe from './Components/HireMe/HireMe'
+
+const Works = lazy(() => import('./Components/Works/Works'))
+const Aboutme = lazy(() => import('./Components/AboutMe/Aboutme'))
+const Reviews = lazy(() => import('./Components/Reviews/Reviews'))
+const HireMe = lazy(() => import('./Components/HireMe/HireMe'))
 
 const pageMetadata = {
   '/': {
@@ -59,14 +60,16 @@ function App() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.35, ease: 'easeInOut' }}
         >
-          <Routes location={location}>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<Aboutme />} />
-            <Route path="/works" element={<Works />} />
-            <Route path="/reviews" element={<Reviews />} />
-            <Route path="/hire" element={<HireMe />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+          <Suspense fallback={<div className="min-h-dvh bg-slate-950" aria-label="Loading page" />}>
+            <Routes location={location}>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<Aboutme />} />
+              <Route path="/works" element={<Works />} />
+              <Route path="/reviews" element={<Reviews />} />
+              <Route path="/hire" element={<HireMe />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Suspense>
         </motion.main>
       </AnimatePresence>
     </div>

@@ -198,6 +198,8 @@ const Reviews = () => {
                   src={reviews[currentIndex].avatar} 
                   alt={reviews[currentIndex].name}
                   className="w-16 h-16 rounded-full object-cover mr-4 border-2 border-indigo-500"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div>
                   <h3 className="text-xl font-semibold text-white">

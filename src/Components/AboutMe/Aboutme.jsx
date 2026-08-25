@@ -133,6 +133,8 @@ const Aboutme = () => {
                   className='relative h-56 w-56 rounded-full border-4 border-gray-800 object-cover sm:h-72 sm:w-72'
                   src={me2}
                   alt='Profile'
+                  loading='lazy'
+                  decoding='async'
                 />
               </div>
             </motion.div>
@@ -194,6 +196,8 @@ const Aboutme = () => {
                 className='relative h-56 w-56 object-cover rounded-full border-4 border-gray-800 sm:h-72 sm:w-72 md:h-80 md:w-80' 
                 src={me2} 
                 alt="Profile" 
+                loading='lazy'
+                decoding='async'
               />
             </div>
           </motion.div>
