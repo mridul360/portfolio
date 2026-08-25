@@ -154,6 +154,69 @@ const Aboutme = () => {
                 ))}
               </div>
             </motion.div>
+
+            <motion.div className='relative z-20 flex flex-col items-center lg:items-start' variants={itemVariants}>
+              <motion.button
+                type='button'
+                onClick={() => setIsContactOpen((open) => !open)}
+                aria-expanded={isContactOpen}
+                aria-label={isContactOpen ? 'Close contact links' : 'Open contact links'}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                className='flex min-h-12 items-center gap-2 rounded-full border border-yellow-300/70 bg-yellow-400 px-4 py-3 text-sm font-bold text-black shadow-lg shadow-yellow-400/20'
+              >
+                <motion.span animate={{ rotate: isContactOpen ? 90 : 0 }} transition={{ duration: 0.25 }}>
+                  {isContactOpen ? <FiX /> : <FiMessageCircle />}
+                </motion.span>
+                Contact Me
+              </motion.button>
+              <AnimatePresence>
+                {isContactOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0, scaleY: 0.6 }}
+                    animate={{ opacity: 1, height: 'auto', scaleY: 1 }}
+                    exit={{ opacity: 0, height: 0, scaleY: 0.6 }}
+                    transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+                    style={{ transformOrigin: 'top center' }}
+                    className='w-full max-w-sm overflow-hidden'
+                    aria-label='Contact links'
+                  >
+                    <div className='mt-2 grid grid-cols-2 gap-2 rounded-2xl border border-white/10 bg-slate-950/90 p-2 shadow-2xl backdrop-blur-xl'>
+                      {[
+                        { label: 'GitHub', icon: <FiGithub />, href: 'https://github.com/mridul360' },
+                        { label: 'LinkedIn', icon: <FiLinkedin />, href: 'https://www.linkedin.com/in/mridul-hasan-mh1207' },
+                        { label: 'Twitter', icon: <FiTwitter />, href: 'https://twitter.com' },
+                      ].map((contactLink, index) => (
+                        <motion.a
+                          key={contactLink.label}
+                          href={contactLink.href}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          aria-label={contactLink.label}
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.08 }}
+                          whileHover={{ y: -3, scale: 1.03 }}
+                          className='flex min-w-32 items-center gap-2 rounded-xl px-3 py-2 text-sm text-gray-300 transition-colors hover:bg-yellow-400 hover:text-black'
+                        >
+                          <span className='text-lg'>{contactLink.icon}</span>
+                          {contactLink.label}
+                        </motion.a>
+                      ))}
+                      <motion.a
+                        href='/hire'
+                        aria-label='Open project form'
+                        whileHover={{ y: -3, scale: 1.03 }}
+                        className='flex min-w-32 items-center gap-2 rounded-xl px-3 py-2 text-sm text-gray-300 transition-colors hover:bg-yellow-400 hover:text-black'
+                      >
+                        <span className='text-lg'><FiMessageCircle /></span>
+                        Start a project
+                      </motion.a>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
             
           </motion.div>
 
@@ -174,64 +237,6 @@ const Aboutme = () => {
         </motion.div>
       </Container>
 
-      <div className='fixed left-3 top-1/2 z-9999 -translate-y-1/2 sm:left-5'>
-        <AnimatePresence>
-          {isContactOpen && (
-            <motion.div
-              initial={{ opacity: 0, x: -24, scale: 0.85 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: -24, scale: 0.85 }}
-              transition={{ type: 'spring', stiffness: 260, damping: 22 }}
-              className='absolute bottom-16 left-0 flex flex-col gap-2 rounded-2xl border border-white/15 bg-slate-950/90 p-2 shadow-2xl backdrop-blur-xl'
-              aria-label='Contact links'
-            >
-              {[
-                { label: 'GitHub', icon: <FiGithub />, href: 'https://github.com/mridul360' },
-                { label: 'LinkedIn', icon: <FiLinkedin />, href: 'https://www.linkedin.com/in/mridul-hasan-mh1207' },
-                { label: 'Twitter', icon: <FiTwitter />, href: 'https://twitter.com' },
-              ].map((contactLink, index) => (
-                <motion.a
-                  key={contactLink.label}
-                  href={contactLink.href}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  aria-label={contactLink.label}
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.08 }}
-                  whileHover={{ x: 4, scale: 1.08 }}
-                  className='flex h-11 w-11 items-center justify-center rounded-xl text-xl text-gray-300 transition-colors hover:bg-yellow-400 hover:text-black'
-                >
-                  {contactLink.icon}
-                </motion.a>
-              ))}
-              <motion.div whileHover={{ x: 4, scale: 1.08 }}>
-                <a
-                  href='/hire'
-                  aria-label='Open project form'
-                  className='flex h-11 w-11 items-center justify-center rounded-xl text-xl text-gray-300 transition-colors hover:bg-yellow-400 hover:text-black'
-                >
-                  <FiMessageCircle />
-                </a>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <motion.button
-          type='button'
-          onClick={() => setIsContactOpen((open) => !open)}
-          aria-expanded={isContactOpen}
-          aria-label={isContactOpen ? 'Close contact links' : 'Open contact links'}
-          whileHover={{ scale: 1.06 }}
-          whileTap={{ scale: 0.94 }}
-          className='flex min-h-12 items-center gap-2 rounded-full border border-yellow-300/70 bg-yellow-400 px-3 py-3 text-sm font-bold text-black shadow-lg shadow-yellow-400/20 sm:px-4'
-        >
-          <motion.span animate={{ rotate: isContactOpen ? 90 : 0 }} transition={{ duration: 0.25 }}>
-            {isContactOpen ? <FiX /> : <FiMessageCircle />}
-          </motion.span>
-          <span className='hidden sm:inline'>Contact Me</span>
-        </motion.button>
-      </div>
       
       {/* Decorative elements */}
       <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>
