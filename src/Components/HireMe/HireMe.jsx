@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Container from '../Layout/Container';
 
 const HireMe = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -14,7 +16,7 @@ const HireMe = () => {
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(searchParams.get('sent') === '1');
   const [submitError, setSubmitError] = useState('');
 
 
@@ -83,7 +85,7 @@ const HireMe = () => {
           _subject: `New project request from ${formData.firstName} ${formData.lastName}`,
           _template: 'table',
           _captcha: 'false',
-          _next: 'https://portfolio-chi-ten-ifiqhq1ix8.vercel.app/hire',
+          _next: 'https://portfolio-chi-ten-ifiqhq1ix8.vercel.app/hire?sent=1',
           _url: 'https://portfolio-chi-ten-ifiqhq1ix8.vercel.app/hire',
           _replyto: formData.email,
           name: `${formData.firstName} ${formData.lastName}`,
@@ -151,7 +153,10 @@ const HireMe = () => {
               initial={{ opacity: 0 }}
               animate={successInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.8 }}
-              onClick={() => setSubmitSuccess(false)}
+              onClick={() => {
+                setSubmitSuccess(false);
+                setSearchParams({}, { replace: true });
+              }}
               className="min-h-11 rounded-lg bg-emerald-600 px-5 py-2 text-sm font-medium text-white shadow-lg transition hover:-translate-y-1 hover:bg-emerald-700 sm:px-6"
             >
               Submit Another Project
