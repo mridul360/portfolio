@@ -129,29 +129,40 @@ const Aboutme = () => {
               variants={itemVariants}
             >
               <h3 className='text-xl font-semibold mb-4 text-gray-200'>Tech Stack</h3>
-              <div className='flex flex-wrap justify-center gap-3 lg:justify-start sm:gap-4'>
-                {techStack.map((tech, index) => (
-                  <motion.div 
-                    key={index}
-                    className={`flex items-center gap-2 bg-gray-800 px-4 py-2 rounded-full transition-all duration-300 cursor-pointer ${tech.hoverClass}`}
-                    variants={itemVariants}
-                    custom={index * 0.1}
-                    whileHover={{ 
-                      y: -5,
-                      scale: 1.05,
-                      transition: { duration: 0.1 }
-                    }}
-                  >
-                    <motion.span 
-                      whileHover={{ scale: 1.2 }}
-                      transition={{ duration: 0.1 }}
-                      className={tech.color}
+              <div
+                className='group overflow-hidden rounded-2xl border border-white/10 bg-black/10 px-2 py-4'
+                style={{ maskImage: 'linear-gradient(to right, transparent, black 9%, black 91%, transparent)' }}
+                aria-label='Technology stack'
+              >
+                <motion.div
+                  className='flex w-max gap-3 pr-3 sm:gap-4'
+                  initial={{ x: 0 }}
+                  animate={inView ? { x: ['0%', '-50%'] } : { x: 0 }}
+                  transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
+                >
+                  {[...techStack, ...techStack].map((tech, index) => (
+                    <motion.div 
+                      key={`${tech.name}-${index}`}
+                      aria-hidden={index >= techStack.length}
+                      className={`flex shrink-0 cursor-pointer items-center gap-2 rounded-full border border-white/10 bg-gray-800 px-4 py-2 transition-all duration-300 ${tech.hoverClass}`}
+                      whileHover={{ 
+                        y: -8,
+                        scale: 1.06,
+                        rotate: index % 2 === 0 ? -2 : 2,
+                        transition: { type: 'spring', stiffness: 400, damping: 18 }
+                      }}
                     >
-                      {tech.icon}
-                    </motion.span>
-                    <span>{tech.name}</span>
-                  </motion.div>
-                ))}
+                      <motion.span 
+                        whileHover={{ scale: 1.25, rotate: 8 }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                        className={tech.color}
+                      >
+                        {tech.icon}
+                      </motion.span>
+                      <span>{tech.name}</span>
+                    </motion.div>
+                  ))}
+                </motion.div>
               </div>
             </motion.div>
 

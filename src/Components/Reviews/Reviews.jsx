@@ -71,17 +71,23 @@ const Reviews = () => {
   const variants = {
     enter: (direction) => {
       return {
-        x: direction === 'right' ? 80 : -80,
+        x: direction === 'right' ? 90 : -90,
+        rotateY: direction === 'right' ? 8 : -8,
+        scale: 0.96,
         opacity: 0
       };
     },
     center: {
       x: 0,
+      rotateY: 0,
+      scale: 1,
       opacity: 1
     },
     exit: (direction) => {
       return {
-        x: direction === 'right' ? -80 : 80,
+        x: direction === 'right' ? -90 : 90,
+        rotateY: direction === 'right' ? -8 : 8,
+        scale: 0.96,
         opacity: 0
       };
     }
@@ -93,7 +99,7 @@ const Reviews = () => {
         What Our Customers Say
       </h2>
       
-      <div className="relative mx-auto h-104 max-w-3xl overflow-hidden sm:h-96">
+      <div className="relative mx-auto h-104 max-w-3xl overflow-hidden [perspective:1200px] sm:h-96">
         <AnimatePresence custom={direction} initial={false}>
           <motion.div
             key={currentIndex}
@@ -102,7 +108,7 @@ const Reviews = () => {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ type: 'spring', stiffness: 220, damping: 24, mass: 0.8 }}
             className="absolute inset-0 flex items-center justify-center"
           >
             <div className="mx-auto w-full max-w-2xl rounded-xl border border-gray-700 bg-gray-800 p-6 shadow-lg sm:p-8">
