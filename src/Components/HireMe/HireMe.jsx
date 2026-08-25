@@ -68,34 +68,37 @@ const HireMe = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitError('');
     if (validateForm()) {
       setIsSubmitting(true);
       try {
-        const response = await fetch('https://formsubmit.co/ajax/mridulhasan222006@gmail.com', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: new URLSearchParams({
-            _subject: `New project request from ${formData.firstName} ${formData.lastName}`,
-            _template: 'table',
-            _captcha: 'false',
-            _next: 'https://portfolio-chi-ten-ifiqhq1ix8.vercel.app/hire',
-            name: `${formData.firstName} ${formData.lastName}`,
-            email: formData.email,
-            message: formData.projectDetails,
-          }).toString(),
+        const submitForm = document.createElement('form');
+        submitForm.method = 'POST';
+        submitForm.action = 'https://formsubmit.co/mridulhasan222006@gmail.com';
+        submitForm.style.display = 'none';
+
+        const fields = {
+          _subject: `New project request from ${formData.firstName} ${formData.lastName}`,
+          _template: 'table',
+          _captcha: 'false',
+          _next: 'https://portfolio-chi-ten-ifiqhq1ix8.vercel.app/hire',
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          message: formData.projectDetails,
+        };
+
+        Object.entries(fields).forEach(([name, value]) => {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = name;
+          input.value = value;
+          submitForm.appendChild(input);
         });
 
-        if (!response.ok) {
-          throw new Error(`Email service returned ${response.status}`);
-        }
-
-        setSubmitSuccess(true);
+        document.body.appendChild(submitForm);
+        submitForm.submit();
       } catch (error) {
         console.error('Unable to send project request:', error);
         setSubmitError('Your request could not be sent. Please try again or email mridulhasan222006@gmail.com directly.');
@@ -183,7 +186,7 @@ const HireMe = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="rounded-2xl border border-gray-700 bg-gray-800 p-5 shadow-2xl sm:p-8"
           >
-            <form className="space-y-5 sm:space-y-6" onSubmit={handleSubmit}>
+            <form className="space-y-5 sm:space-y-6" onSubmit={handleSubmit} noValidate>
               <motion.div 
                 className="grid grid-cols-1 gap-6 sm:grid-cols-2"
                 initial={{ opacity: 0 }}
