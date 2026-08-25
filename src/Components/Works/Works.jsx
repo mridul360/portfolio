@@ -4,8 +4,6 @@ import agenc from '../../assets/agenc.jpg';
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink, FiChevronDown } from 'react-icons/fi';
 import { FaReact, FaHtml5, FaCss3Alt, FaJs } from 'react-icons/fa';
-import Particles from 'react-tsparticles';
-import { loadFull } from 'tsparticles';
 
 const allProjects = [
   {
@@ -77,25 +75,22 @@ const Works = () => {
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [isExpanding, setIsExpanding] = useState(false);
 
-  const particlesInit = async (main) => {
-    await loadFull(main);
-  };
-
   const displayedProjects = showAllProjects ? allProjects : allProjects.slice(0, 3);
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 28 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.1,
-        duration: 0.5
+        delay: i * 0.08,
+        duration: 0.65,
+        ease: [0.22, 1, 0.36, 1]
       }
     }),
     hover: {
-      y: -10,
-      transition: { duration: 0.3 }
+      y: -6,
+      transition: { duration: 0.3, ease: "easeOut" }
     }
   };
 
@@ -116,40 +111,6 @@ const Works = () => {
     
       <div className="absolute inset-0 bg-gradient-to-br from-[#0a1128] via-[#0f172a] to-[#14213d] z-0"></div>
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMCAwaDQwdjQwSDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTAgMEg0MFY0MEgweiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=')] opacity-20 z-0"></div>
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={{
-          particles: {
-            number: { value: 40, density: { enable: true, value_area: 800 } },
-            color: { value: "#f59e0b" },
-            shape: { type: "circle" },
-            opacity: { value: 0.5, random: true },
-            size: { value: 3, random: true },
-            line_linked: { 
-              enable: true, 
-              distance: 150, 
-              color: "#f59e0b", 
-              opacity: 0.2, 
-              width: 1 
-            },
-            move: { 
-              enable: true, 
-              speed: 2, 
-              direction: "none", 
-              random: true,
-              out_mode: "bounce"
-            }
-          },
-          interactivity: {
-            events: {
-              onhover: { enable: true, mode: "repulse" }
-            }
-          }
-        }}
-        className="absolute inset-0 z-0"
-      />
-
       <Container className="relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}

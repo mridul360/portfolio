@@ -71,7 +71,7 @@ const Reviews = () => {
   const variants = {
     enter: (direction) => {
       return {
-        x: direction === 'right' ? 1000 : -1000,
+        x: direction === 'right' ? 80 : -80,
         opacity: 0
       };
     },
@@ -81,19 +81,19 @@ const Reviews = () => {
     },
     exit: (direction) => {
       return {
-        x: direction === 'right' ? -1000 : 1000,
+        x: direction === 'right' ? -80 : 80,
         opacity: 0
       };
     }
   };
 
   return (
-    <div id='reviews' className=" min-h-dvh mx-auto px-4 py-12 sm:px-6 lg:px-8 animated-bg">
-      <h2 className="text-3xl mt-45 font-bold text-center text-white mb-12">
+    <section id='reviews' className="animated-bg min-h-dvh px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
+      <h2 className="mb-10 text-center text-3xl font-bold text-white sm:mb-12 sm:text-4xl">
         What Our Customers Say
       </h2>
       
-      <div className="relative overflow-hidden h-96">
+      <div className="relative mx-auto h-104 max-w-3xl overflow-hidden sm:h-96">
         <AnimatePresence custom={direction} initial={false}>
           <motion.div
             key={currentIndex}
@@ -102,11 +102,11 @@ const Reviews = () => {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="absolute inset-0 flex items-center justify-center"
           >
-            <div className="bg-gray-800 p-8 rounded-xl shadow-lg max-w-2xl mx-auto border border-gray-700">
-              <div className="flex items-center mb-6">
+            <div className="mx-auto w-full max-w-2xl rounded-xl border border-gray-700 bg-gray-800 p-6 shadow-lg sm:p-8">
+              <div className="mb-6 flex items-center">
                 <img 
                   src={reviews[currentIndex].avatar} 
                   alt={reviews[currentIndex].name}
@@ -131,7 +131,7 @@ const Reviews = () => {
                 ))}
               </div>
               
-              <p className="text-gray-300 text-lg italic">
+              <p className="text-base italic text-gray-300 sm:text-lg">
                 "{reviews[currentIndex].comment}"
               </p>
             </div>
@@ -139,7 +139,7 @@ const Reviews = () => {
         </AnimatePresence>
       </div>
        
-      <div className="flex justify-center mt-8  space-x-4">
+      <div className="mt-8 flex justify-center space-x-4">
         <button  
           onClick={prevSlide}
           className="p-2 rounded-full bg-gray-700 cursor-pointer hover:bg-gray-600 transition-colors"
@@ -167,7 +167,7 @@ const Reviews = () => {
           <FaChevronRight className="h-5 w-5 text-gray-300" />
         </button>
       </div>
-    </div>
+    </section>
   );
 };
 

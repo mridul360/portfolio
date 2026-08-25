@@ -1,43 +1,43 @@
 import React from 'react';
 import me2 from '../../assets/me5.jpg';
 import Container from '../Layout/Container';
-import { FaBootstrap, FaCss3Alt, FaGithub, FaHtml5, FaJsSquare, FaLinkedin, FaReact } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
+import { FaBootstrap, FaCss3Alt, FaHtml5, FaJsSquare, FaReact } from 'react-icons/fa';
+import { FiGithub, FiLinkedin, FiMessageCircle, FiTwitter, FiX } from 'react-icons/fi';
 import { SiTailwindcss } from "react-icons/si";
 import { useInView } from 'react-intersection-observer';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3
+      staggerChildren: 0.12,
+      delayChildren: 0.15
     }
   }
 };
 
 const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
+  hidden: { y: 16, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
     transition: {
-      duration: 0.5,
-      ease: "easeOut"
+      duration: 0.65,
+      ease: [0.22, 1, 0.36, 1]
     }
   }
 };
 
 const imageVariants = {
-  hidden: { scale: 0.8, opacity: 0 },
+  hidden: { scale: 0.92, opacity: 0 },
   visible: {
     scale: 1,
     opacity: 1,
     transition: {
-      duration: 0.5,
-      ease: "easeOut"
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1]
     }
   }
 };
@@ -82,37 +82,38 @@ const techStack = [
 ];
 
 const Aboutme = () => {
+  const [isContactOpen, setIsContactOpen] = React.useState(false);
   const [ref, inView] = useInView({
     threshold: 0.1,
-    triggerOnce: false
+    triggerOnce: true
   });
 
   return (
     <section 
       id='about' 
-      className='relative min-h-screen bg-gradient-to-br from-gray-900 to-black py-20 overflow-hidden'
+      className='relative flex min-h-screen items-center overflow-hidden bg-linear-to-br from-gray-900 to-black py-24 sm:py-28'
       ref={ref}
     >
       <Container>
         <motion.div 
-          className='flex flex-col lg:flex-row items-center gap-12 relative z-10'
+          className='relative z-10 flex flex-col items-center gap-12 lg:flex-row lg:gap-16'
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={containerVariants}
         >
           <motion.div 
-            className='lg:w-3/5 mt-65 text-white'
+            className='text-center text-white lg:w-3/5 lg:text-left'
             variants={containerVariants}
           >
             <motion.h2 
-              className='text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500'
+              className='mb-6 bg-linear-to-r from-purple-400 to-blue-500 bg-clip-text text-4xl font-bold text-transparent md:text-5xl'
               variants={itemVariants}
             >
               About Me
             </motion.h2>
             
             <motion.p 
-              className='text-lg md:text-xl leading-relaxed text-gray-300 mb-8'
+              className='mb-8 text-base leading-relaxed text-gray-300 md:text-xl'
               variants={itemVariants}
             >
               I am a passionate Frontend Developer with entry-level experience building responsive, 
@@ -128,7 +129,7 @@ const Aboutme = () => {
               variants={itemVariants}
             >
               <h3 className='text-xl font-semibold mb-4 text-gray-200'>Tech Stack</h3>
-              <div className='flex flex-wrap gap-4'>
+              <div className='flex flex-wrap justify-center gap-3 lg:justify-start sm:gap-4'>
                 {techStack.map((tech, index) => (
                   <motion.div 
                     key={index}
@@ -154,40 +155,15 @@ const Aboutme = () => {
               </div>
             </motion.div>
             
-            <motion.div variants={itemVariants}>
-              <h3 className='text-xl font-semibold mb-4 text-gray-200'>Connect With Me</h3>
-              <div className='flex gap-4'>
-                {[
-                  { icon: <FaGithub className='text-2xl' />, url: 'https://github.com/mridul360' },
-                  { icon: <FaLinkedin className='text-2xl' />, url: 'https://www.linkedin.com/in/mridul-hasan-mh1207' },
-                  { icon: <FaXTwitter className='text-2xl' />, url: '#' }
-                ].map((social, index) => (
-                  <motion.a 
-                    key={index}
-                    href={social.url} 
-                    className='text-gray-400 hover:text-white transition-colors'
-                    variants={itemVariants}
-                    custom={index * 0.1}
-                    whileHover={{ 
-                      scale: 1.2,
-                      y: -5,
-                      transition: { duration: 0.2 }
-                    }}
-                  >
-                    {social.icon}
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
           </motion.div>
 
           {/* Image Section */}
           <motion.div 
-            className='lg:w-2/5 flex mt-40 justify-center'
+            className='flex justify-center lg:w-2/5'
             variants={imageVariants}
           >
             <div className='relative'>
-              <div className='absolute -inset-4 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full blur-md opacity-75'></div>
+              <div className='absolute -inset-4 bg-linear-to-r from-purple-600 to-blue-500 rounded-full blur-md opacity-75'></div>
               <img 
                 className='relative h-64 w-64 md:h-80 md:w-80 object-cover rounded-full border-4 border-gray-800' 
                 src={me2} 
@@ -197,6 +173,65 @@ const Aboutme = () => {
           </motion.div>
         </motion.div>
       </Container>
+
+      <div className='fixed left-3 top-1/2 z-9999 -translate-y-1/2 sm:left-5'>
+        <AnimatePresence>
+          {isContactOpen && (
+            <motion.div
+              initial={{ opacity: 0, x: -24, scale: 0.85 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -24, scale: 0.85 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 22 }}
+              className='absolute bottom-16 left-0 flex flex-col gap-2 rounded-2xl border border-white/15 bg-slate-950/90 p-2 shadow-2xl backdrop-blur-xl'
+              aria-label='Contact links'
+            >
+              {[
+                { label: 'GitHub', icon: <FiGithub />, href: 'https://github.com/mridul360' },
+                { label: 'LinkedIn', icon: <FiLinkedin />, href: 'https://www.linkedin.com/in/mridul-hasan-mh1207' },
+                { label: 'Twitter', icon: <FiTwitter />, href: 'https://twitter.com' },
+              ].map((contactLink, index) => (
+                <motion.a
+                  key={contactLink.label}
+                  href={contactLink.href}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  aria-label={contactLink.label}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.08 }}
+                  whileHover={{ x: 4, scale: 1.08 }}
+                  className='flex h-11 w-11 items-center justify-center rounded-xl text-xl text-gray-300 transition-colors hover:bg-yellow-400 hover:text-black'
+                >
+                  {contactLink.icon}
+                </motion.a>
+              ))}
+              <motion.div whileHover={{ x: 4, scale: 1.08 }}>
+                <a
+                  href='/hire'
+                  aria-label='Open project form'
+                  className='flex h-11 w-11 items-center justify-center rounded-xl text-xl text-gray-300 transition-colors hover:bg-yellow-400 hover:text-black'
+                >
+                  <FiMessageCircle />
+                </a>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <motion.button
+          type='button'
+          onClick={() => setIsContactOpen((open) => !open)}
+          aria-expanded={isContactOpen}
+          aria-label={isContactOpen ? 'Close contact links' : 'Open contact links'}
+          whileHover={{ scale: 1.06 }}
+          whileTap={{ scale: 0.94 }}
+          className='flex min-h-12 items-center gap-2 rounded-full border border-yellow-300/70 bg-yellow-400 px-3 py-3 text-sm font-bold text-black shadow-lg shadow-yellow-400/20 sm:px-4'
+        >
+          <motion.span animate={{ rotate: isContactOpen ? 90 : 0 }} transition={{ duration: 0.25 }}>
+            {isContactOpen ? <FiX /> : <FiMessageCircle />}
+          </motion.span>
+          <span className='hidden sm:inline'>Contact Me</span>
+        </motion.button>
+      </div>
       
       {/* Decorative elements */}
       <div className='absolute top-0 left-0 w-full h-full overflow-hidden'>

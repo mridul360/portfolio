@@ -19,12 +19,12 @@ const HireMe = () => {
 
   const [titleRef, titleInView] = useInView({
     threshold: 0.1,
-    triggerOnce: false
+    triggerOnce: true
   });
 
   const [formRef, formInView] = useInView({
     threshold: 0.1,
-    triggerOnce: false
+    triggerOnce: true
   });
 
   const [successRef, successInView] = useInView({
