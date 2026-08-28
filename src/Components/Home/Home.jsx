@@ -51,7 +51,7 @@ const Home = () => {
   return (
     <section
       id="home"
-      className="relative flex min-h-dvh items-center overflow-x-clip bg-cover bg-center px-0 py-24 sm:py-28"
+      className="home-hero relative flex min-h-dvh items-center overflow-x-clip bg-cover bg-center px-0 py-24 sm:py-28"
 
 
       style={{

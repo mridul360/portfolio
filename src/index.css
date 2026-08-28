@@ -27,6 +27,13 @@ body,
     display: block !important;
   }
 }
+
+@media (max-width: 1023px) {
+  .home-hero {
+    animation: none !important;
+    background-position: 50% 50% !important;
+  }
+}
 @keyframes gradientBG {
   0% { background-position: 0% 50% }
   50% { background-position: 100% 50% }
