@@ -1,25 +1,22 @@
-import { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { FiBriefcase, FiHome, FiMail, FiStar, FiUser } from 'react-icons/fi';
 import logo from "../../assets/logo2.png";
 import Container from '../Layout/Container';
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const links = [
-    { label: 'Home', to: '/' },
-    { label: 'About Me', to: '/about' },
-    { label: 'Recent Works', to: '/works' },
-    { label: 'Reviews', to: '/reviews' },
-    { label: 'Hire Me', to: '/hire' },
+    { label: 'Home', to: '/', icon: FiHome },
+    { label: 'About Me', to: '/about', icon: FiUser },
+    { label: 'Recent Works', to: '/works', icon: FiBriefcase },
+    { label: 'Reviews', to: '/reviews', icon: FiStar },
+    { label: 'Hire Me', to: '/hire', icon: FiMail },
   ];
 
   return (
-    <nav className='fixed w-full z-9999' aria-label="Main navigation">
+    <nav className='fixed bottom-3 left-1/2 z-9999 w-[calc(100%-1.5rem)] -translate-x-1/2 lg:bottom-auto lg:left-0 lg:top-0 lg:w-full lg:translate-x-0' aria-label="Main navigation">
       <Container>
         <div 
-          className='relative flex min-h-16 items-center justify-between rounded-b-xl px-4 sm:px-6'
+          className='relative flex min-h-16 items-center justify-center rounded-2xl px-2 sm:px-6 lg:justify-between lg:rounded-b-xl lg:rounded-t-none lg:px-4'
           style={{
             background: 'rgba(23, 23, 23, 0.4)',
             boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
@@ -28,78 +25,27 @@ const Navbar = () => {
             border: '1px solid rgba(23, 23, 23, 0.3)',
           }}
         >
-          <div>
+          <div className='hidden lg:block'>
             <Link to="/" aria-label="Go to homepage">
               <img className='h-14 sm:h-16' src={logo} alt="Mridul Hasan" />
             </Link>
           </div>
-          <ul className='hidden items-center gap-8 font-bold lg:flex'>
+          <ul className='flex w-full items-center justify-around gap-1 lg:w-auto lg:justify-end lg:gap-8 lg:font-bold'>
             {links.map((link) => (
               <li key={link.to}>
-                <NavLink to={link.to} className={({ isActive }) => `relative group cursor-pointer text-white transition-colors hover:text-blue-400 ${isActive ? 'active' : ''}`}>
-                  {link.label}
-                  <span className="absolute left-1/2 -bottom-1 h-0.5 w-0 bg-white transition-all duration-300 group-hover:left-0 group-hover:w-full" />
+                <NavLink
+                  to={link.to}
+                  end={link.to === '/'}
+                  title={link.label}
+                  className={({ isActive }) => `group relative flex min-w-12 flex-col items-center gap-1 rounded-xl px-2 py-2 text-white transition-colors hover:bg-white/10 hover:text-yellow-300 lg:block lg:min-w-0 lg:rounded-none lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-blue-400 ${isActive ? 'active' : ''}`}
+                >
+                  <link.icon className='text-xl lg:hidden' aria-hidden='true' />
+                  <span className='whitespace-nowrap text-[11px] font-medium leading-none lg:text-lg lg:font-bold'>{link.label}</span>
+                  <span className="absolute bottom-0 left-0 hidden h-0.5 w-0 bg-white transition-[width] duration-300 group-hover:w-full lg:block" />
                 </NavLink>
               </li>
             ))}
           </ul>
-
-          <motion.button
-            type="button"
-            className='rounded-md p-2 text-2xl text-white transition hover:bg-white/10 lg:hidden'
-            onClick={() => setIsMenuOpen((open) => !open)}
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-navigation"
-            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            whileTap={{ scale: 0.88 }}
-          >
-            <motion.span
-              className='block'
-              animate={{ rotate: isMenuOpen ? 90 : 0 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
-            >
-              {isMenuOpen ? <FiX /> : <FiMenu />}
-            </motion.span>
-          </motion.button>
-
-          <AnimatePresence>
-            {isMenuOpen && (
-              <motion.div
-                id="mobile-navigation"
-                initial={{ opacity: 0, height: 0, y: -8 }}
-                animate={{ opacity: 1, height: 'auto', y: 0 }}
-                exit={{ opacity: 0, height: 0, y: -8 }}
-                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                className='absolute left-0 top-full w-full overflow-hidden rounded-b-xl border border-white/10 bg-slate-950/95 p-4 shadow-xl backdrop-blur lg:hidden'
-              >
-                <motion.ul
-                  className='space-y-1 font-bold'
-                  initial='hidden'
-                  animate='visible'
-                  variants={{
-                    hidden: {},
-                    visible: { transition: { staggerChildren: 0.06, delayChildren: 0.08 } }
-                  }}
-                >
-                  {links.map((link) => (
-                    <motion.li
-                      key={link.to}
-                      variants={{ hidden: { opacity: 0, x: -12 }, visible: { opacity: 1, x: 0 } }}
-                      transition={{ duration: 0.25, ease: 'easeOut' }}
-                    >
-                      <NavLink
-                        to={link.to}
-                        onClick={() => setIsMenuOpen(false)}
-                        className={({ isActive }) => `block cursor-pointer rounded-md px-4 py-3 text-white transition-colors hover:bg-white/10 hover:text-blue-400 ${isActive ? 'active' : ''}`}
-                      >
-                        {link.label}
-                      </NavLink>
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
       </Container>
     </nav>

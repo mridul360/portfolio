@@ -52,7 +52,7 @@ const Home = () => {
   return (
     <section
       id="home"
-      className="relative flex min-h-dvh items-center overflow-hidden bg-cover bg-center px-0 py-24 sm:py-28"
+      className="relative flex min-h-dvh items-center overflow-x-clip bg-cover bg-center px-0 py-24 sm:py-28"
 
 
       style={{
@@ -154,7 +154,7 @@ const Home = () => {
               </motion.button>
             </motion.div>
 
-            <motion.div className='mt-7 flex justify-center md:justify-start' variants={item}>
+            <motion.div className='mt-7 flex justify-start' variants={item}>
               <ContactButton />
             </motion.div>
           </motion.div>

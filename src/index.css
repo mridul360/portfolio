@@ -16,10 +16,16 @@ body,
   font-weight: bold;
 }
 
-.active span {
+.active > span:last-child {
   width: 100% !important;
   left: 0 !important;
   background: white !important;
+}
+
+@media (min-width: 1024px) {
+  .active > span:last-child {
+    display: block !important;
+  }
 }
 @keyframes gradientBG {
   0% { background-position: 0% 50% }

@@ -14,32 +14,38 @@ const ContactButton = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
 
   return (
-    <motion.div className='relative z-20 flex flex-col items-center lg:items-start'>
+    <motion.div layout className='relative z-20 flex flex-col items-start justify-start'>
       <motion.button
         type='button'
         onClick={() => setIsContactOpen((open) => !open)}
         aria-expanded={isContactOpen}
         aria-label={isContactOpen ? 'Close contact links' : 'Open contact links'}
         whileTap={{ scale: 0.97 }}
-        className='flex min-h-12 items-center gap-2 rounded-full border border-yellow-300/70 bg-yellow-400 px-4 py-3 text-sm font-bold text-black shadow-lg shadow-yellow-400/20'
+        className={`flex min-h-12 shrink-0 items-center rounded-full border border-yellow-300/70 bg-yellow-400 text-sm font-bold text-black shadow-lg shadow-yellow-400/20 transition-[padding,width] duration-300 ${isContactOpen ? 'w-12 justify-center p-0' : 'gap-2 px-4 py-3'}`}
       >
-        <motion.span animate={{ rotate: isContactOpen ? 90 : 0 }} transition={{ duration: 0.18, ease: 'easeOut' }}>
+        <motion.span
+          animate={{ rotate: isContactOpen ? 90 : 0 }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+          className='flex'
+        >
           {isContactOpen ? <FiX /> : <FiMessageCircle />}
         </motion.span>
-        Contact Me
+        {!isContactOpen && 'Contact Me'}
       </motion.button>
-      <AnimatePresence>
+
+      <AnimatePresence initial={false}>
         {isContactOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: -6 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: -6 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            style={{ transformOrigin: 'top center', willChange: 'transform, opacity' }}
-            className='absolute left-0 top-full w-[min(20rem,calc(100vw-2rem))] overflow-hidden'
+            key='contact-links'
+            initial={{ opacity: 0, x: 18 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 18 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            layout
+            className='relative mt-2 w-[calc(100vw-2rem)] max-w-sm min-w-0 lg:absolute lg:left-full lg:top-0 lg:ml-2 lg:mt-0 lg:w-80'
             aria-label='Contact links'
           >
-            <div className='mt-2 grid grid-cols-1 gap-2 rounded-2xl border border-white/10 bg-slate-950 p-2 shadow-xl min-[380px]:grid-cols-2'>
+            <div className='grid min-w-0 flex-1 grid-cols-2 gap-1.5 rounded-2xl border border-white/10 bg-slate-950/95 p-1.5 shadow-xl backdrop-blur-sm sm:gap-2 sm:p-2'>
               {contactLinks.map((contactLink, index) => (
                 <motion.a
                   key={contactLink.label}
@@ -51,7 +57,7 @@ const ContactButton = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05, duration: 0.16 }}
                   whileHover={{ scale: 1.02 }}
-                  className='flex min-w-0 items-center gap-2 rounded-xl px-3 py-2 text-sm text-gray-300 transition-colors hover:bg-yellow-400 hover:text-black'
+                  className='flex min-h-11 min-w-0 items-center gap-2 rounded-xl px-2 py-2 text-xs font-medium text-gray-300 transition-colors hover:bg-yellow-400 hover:text-black sm:px-3 sm:text-sm'
                 >
                   <span className='text-lg'>{contactLink.icon}</span>
                   {contactLink.label}
@@ -62,7 +68,7 @@ const ContactButton = () => {
                   to='/hire'
                   onClick={() => setIsContactOpen(false)}
                   aria-label='Open project form'
-                  className='flex min-w-0 items-center gap-2 rounded-xl px-3 py-2 text-sm text-gray-300 transition-colors hover:bg-yellow-400 hover:text-black'
+                  className='flex min-h-11 min-w-0 items-center gap-2 rounded-xl px-2 py-2 text-xs font-medium text-gray-300 transition-colors hover:bg-yellow-400 hover:text-black sm:px-3 sm:text-sm'
                 >
                   <span className='text-lg'><FiMessageCircle /></span>
                   Start a project

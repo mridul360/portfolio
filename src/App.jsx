@@ -50,7 +50,7 @@ function App() {
   return (
     <>
     <Navbar />
-    <div className="min-h-screen overflow-x-hidden bg-slate-950">
+    <div className="min-h-screen overflow-x-hidden bg-slate-950 pb-20 lg:pb-0">
       <AnimatePresence mode="wait" initial={false}>
         <motion.main
           key={location.pathname}
