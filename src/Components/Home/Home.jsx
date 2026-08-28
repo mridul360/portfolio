@@ -4,7 +4,6 @@ import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router-dom';
 import { FiArrowDownCircle, FiExternalLink } from 'react-icons/fi';
 import me from '../../assets/logoo.jpeg';
-import ContactButton from '../ContactButton/ContactButton';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -154,9 +153,6 @@ const Home = () => {
               </motion.button>
             </motion.div>
 
-            <motion.div className='mt-7 flex justify-start' variants={item}>
-              <ContactButton />
-            </motion.div>
           </motion.div>
 
           <motion.div

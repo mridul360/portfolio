@@ -5,7 +5,6 @@ import { FaBootstrap, FaCss3Alt, FaHtml5, FaJsSquare, FaReact } from 'react-icon
 import { SiTailwindcss } from "react-icons/si";
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
-import ContactButton from '../ContactButton/ContactButton';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -181,8 +180,6 @@ const Aboutme = () => {
               </div>
             </motion.div>
 
-            <ContactButton />
-            
           </motion.div>
 
           {/* Image Section */}
