@@ -20,19 +20,17 @@ const Navbar = () => {
       <Link
         to='/'
         aria-label='Go to homepage'
-        className='fixed left-3 top-3 z-9999 rounded-xl border border-white/10 bg-slate-950/40 p-1.5 shadow-lg backdrop-blur-md lg:hidden'
+        className='fixed left-3 top-3 z-9999 rounded-xl border border-white/10 bg-slate-950/70 p-1.5 shadow-lg lg:hidden'
       >
         <img className='h-10 w-auto object-contain sm:h-12' src={logo} alt='Mridul Hasan' />
       </Link>
       <nav className='fixed bottom-3 left-1/2 z-9999 w-[calc(100%-1.5rem)] -translate-x-1/2 lg:bottom-auto lg:left-0 lg:top-0 lg:w-full lg:translate-x-0' aria-label="Main navigation">
       <Container>
         <div 
-          className='relative flex min-h-16 items-center justify-center rounded-2xl px-2 sm:px-6 lg:justify-between lg:rounded-b-xl lg:rounded-t-none lg:px-4'
+          className='relative flex min-h-16 items-center justify-center rounded-2xl px-2 sm:px-6 lg:justify-between lg:rounded-b-xl lg:rounded-t-none lg:px-4 lg:backdrop-blur-md'
           style={{
             background: 'rgba(23, 23, 23, 0.4)',
             boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-            backdropFilter: 'blur(5.4px)',
-            WebkitBackdropFilter: 'blur(5.4px)',
             border: '1px solid rgba(23, 23, 23, 0.3)',
           }}
         >
@@ -79,7 +77,7 @@ const Navbar = () => {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -8, scale: 0.96 }}
                   transition={{ duration: 0.2, ease: 'easeOut' }}
-                  className='absolute bottom-full right-0 mb-3 w-[min(18rem,calc(100vw-2rem))] origin-bottom-right rounded-2xl border border-white/10 bg-slate-950/95 p-4 text-white shadow-2xl backdrop-blur-md lg:bottom-auto lg:top-full lg:mb-0 lg:mt-3 lg:w-72 lg:origin-top-right'
+                  className='absolute bottom-full right-0 mb-3 w-[min(18rem,calc(100vw-2rem))] origin-bottom-right rounded-2xl border border-white/10 bg-slate-950/95 p-4 text-white shadow-2xl lg:bottom-auto lg:top-full lg:mb-0 lg:mt-3 lg:w-72 lg:origin-top-right lg:backdrop-blur-md'
                   role='dialog'
                   aria-label='Contact information'
                 >
